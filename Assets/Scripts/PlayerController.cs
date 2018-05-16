@@ -83,11 +83,11 @@ public class PlayerController : MonoBehaviour
 
       
 
-        vertLookRotation += Input.GetAxis("Mouse Y") * mouseSensY;
+        //vertLookRotation += Input.GetAxis("Mouse Y") * mouseSensY;
 
-        vertLookRotation = Mathf.Clamp(vertLookRotation, -60, 60);
+        //vertLookRotation = Mathf.Clamp(vertLookRotation, -60, 60);
 
-        camT.localEulerAngles = Vector3.left * vertLookRotation;
+        //camT.localEulerAngles = Vector3.left * vertLookRotation;
 
         transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensX);//Do not multiply by time.deltatime as mouse input is frame independant
 
