@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     public bool grounded;
 
+    public LayerMask mask;
 
     RaycastHit detectGround;
 
@@ -159,17 +160,6 @@ public class PlayerController : MonoBehaviour
         {
             myRig.drag = drag;
 
-            if (Input.GetAxis("Jump") != 0 && grounded == true)
-            {
-
-                if (canJump)
-                {
-                    myRig.AddRelativeForce(((new Vector3(0, 1, 0) * jumpStrength) * throttle) * Time.deltaTime, ForceMode.Impulse);
-                    timer = 0;
-                }
-
-
-            }
 
 
 
@@ -180,7 +170,9 @@ public class PlayerController : MonoBehaviour
                 if (metersPerSec <= 0.001)
                 {
                     normalizedMovement = new Vector3(horz, 0, vert);
-                    myRig.AddRelativeForce((normalizedMovement.normalized * speed/2 * throttle) * Time.deltaTime, ForceMode.Impulse);
+                    //myRig.AddRelativeForce((normalizedMovement.normalized * speed/2 * throttle) * Time.deltaTime, ForceMode.Impulse);
+                    myRig.velocity = (transform.TransformVector(normalizedMovement.normalized) * speed / 2 * throttle) * Time.deltaTime;
+
                 }
                 else
                 {
@@ -189,19 +181,43 @@ public class PlayerController : MonoBehaviour
 
 
 
-                    myRig.AddRelativeForce((normalizedMovement.normalized * speed * throttle) * Time.deltaTime);
+                    //myRig.AddRelativeForce((normalizedMovement.normalized * speed * throttle) * Time.deltaTime);
+                    myRig.velocity = (transform.TransformVector(normalizedMovement.normalized) * speed * throttle) * Time.deltaTime;
                 }
 
             }
 
         }
-        else if(grounded && detectGround.transform.tag == "Ground")
+        else if (grounded && detectGround.transform.tag == "Ground")
         {
             if (myRig.velocity.magnitude != 0)
             {
                 myRig.drag = stoppingPower;
             }
-            
+
         }
+
+
+        if (Input.GetAxis("Jump") != 0 && grounded == true)
+        {
+            //if(Physics.Raycast(transform.position,Vector3.up * -1 ,mask))// Shea Tips
+            //   {
+
+
+            //}
+
+
+            if (canJump)
+            {
+
+                myRig.AddRelativeForce(((new Vector3(0, 1, 0) * jumpStrength) * throttle) * Time.deltaTime, ForceMode.Impulse);
+
+
+                timer = 0;
+            }
+
+
+        }
+
     }
 }
