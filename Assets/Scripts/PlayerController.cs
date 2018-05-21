@@ -5,11 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [Header("Camera Variables")]
-    public float mouseSensX = 3.5f;//Sensativity x
-    public float mouseSensY = 3.5f;//sensativity Y
-    Transform camT;
-    float vertLookRotation;
+
 
     [Header("Movement")]
     public float speed;
@@ -52,7 +48,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         timer = jumpCoolDown;
-        camT = Camera.main.transform;
+
         myRig = GetComponent<Rigidbody>();
 
         normalizedMovement = new Vector3(0, 0, 0);
@@ -77,21 +73,8 @@ public class PlayerController : MonoBehaviour
          * Input.GetAxis("Horizontal") < 0 // gets left
          */
 
-
-        //Look rotation-----------------------------------------------------------------------------------------------------------------------------------
         metersPerSec = myRig.velocity.magnitude;
-
-      
-
-        //vertLookRotation += Input.GetAxis("Mouse Y") * mouseSensY;
-
-        //vertLookRotation = Mathf.Clamp(vertLookRotation, -60, 60);
-
-        //camT.localEulerAngles = Vector3.left * vertLookRotation;
-
-        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensX);//Do not multiply by time.deltatime as mouse input is frame independant
-
-        //------------------------------------------------------------------------------------------------------------------------------------------------
+        
 
         grounded = Physics.Raycast(transform.position, new Vector3(0, -1, 0), out detectGround, 0.5f);
 
