@@ -250,75 +250,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPool: {fileID: 0}
   evaluationScale: 0.25
-  speed: 250
+  speed: 100
   timeLimmit: 5
-  deviation: 0.01
+  deviation: 0
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 0
+      time: 0.0016021729
+      value: -0.18424988
       inSlope: 2
       outSlope: 2
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.04702252
-      value: 0.19862318
+      time: 0.099650085
+      value: 0.3012538
       inSlope: -1.6525947
       outSlope: -1.6525947
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.19790882
-      value: -0.20098722
+      time: 0.19698566
+      value: -0.20426786
       inSlope: -0.1238572
       outSlope: -0.1238572
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.3016919
-      value: 0.198798
+      time: 0.29828918
+      value: 0.300227
       inSlope: 1.1496246
       outSlope: 1.1496246
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.40963033
-      value: -0.19693476
-      inSlope: 0.68858266
-      outSlope: 0.68858266
+      time: 0.398961
+      value: -0.19916832
+      inSlope: 0.782907
+      outSlope: 0.782907
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.50341845
-      value: 0.19792053
-      inSlope: 1.2356043
-      outSlope: 1.2356043
+      time: 0.49664
+      value: 0.30140978
+      inSlope: 1.0593235
+      outSlope: 1.0593235
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.6038804
-      value: -0.19446054
-      inSlope: 0.2001226
-      outSlope: 0.2001226
+      time: 0.6025912
+      value: -0.20300484
+      inSlope: 0.10550022
+      outSlope: 0.10550022
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.70282507
-      value: 0.20262212
-      inSlope: 0.9305775
-      outSlope: 0.9305775
+      time: 0.70294213
+      value: 0.29451388
+      inSlope: 1.565069
+      outSlope: 1.565069
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.8024541
-      value: -0.19196989
-      inSlope: -0.4249066
-      outSlope: -0.4249066
+      time: 0.7968152
+      value: -0.19939825
+      inSlope: -0.48935413
+      outSlope: -0.48935413
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.89881015
-      value: 0.20103171
-      inSlope: 2.3313613
-      outSlope: 2.3313613
+      time: 0.8972264
+      value: 0.30030543
+      inSlope: 2.233088
+      outSlope: 2.233088
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.9958191
-      value: 0.006248474
+      time: 1.0006459
+      value: -0.19115992
       inSlope: -2.5181773
       outSlope: -2.5181773
       tangentMode: 0
@@ -332,7 +332,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1188352356848438}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1

@@ -24,7 +24,7 @@ public class PooledObject : MonoBehaviour
     private void OnEnable()
     {
         curve.postWrapMode = WrapMode.Loop;
-
+        
         deviationVect = new Vector3(Random.Range(-deviation, deviation), Random.Range(-deviation, deviation), Random.Range(-deviation, deviation));
         myPool = FindObjectOfType<ObjectPool>();
         

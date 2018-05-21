@@ -36,6 +36,7 @@ public class SeekerSpawner : MonoBehaviour
         bullet.transform.rotation = transform.rotation;
         bullet.transform.Rotate(Vector3.forward, Random.Range(-180, 180), Space.Self);
         bullet.transform.position = transform.position + (transform.forward * 2);
+        //bullet.GetComponent<bulletScript>(). = transform.tag;
         bullet.SetActive(true);
     }
 }
