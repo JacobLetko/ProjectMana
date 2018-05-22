@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PooledObject : MonoBehaviour
 {
+    BulletScript bulletScript;
+    public float rotationSpeed = 360;
+    public float damage;
     public ObjectPool myPool;
     public float evaluationScale = 4;
     public float speed =10;
@@ -42,13 +45,16 @@ public class PooledObject : MonoBehaviour
             returnToPool();
         }
         transform.Translate(((Vector3.forward + deviationVect) + (Vector3.right * offset)) * speed * Time.deltaTime);
-        transform.Rotate(Vector3.forward, 360 * Time.deltaTime, Space.Self);
+        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.Self);
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        timer = 0;
-        returnToPool();
+        if (other.transform.tag == "Wall")
+        {
+            timer = 0;
+            returnToPool();
+        }
     }
 }
