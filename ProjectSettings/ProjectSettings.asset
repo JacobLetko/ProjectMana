@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  productGUID: d0295e2d62eaedc4d97fa7c467b4bbe8
+  productGUID: 9d39d6dc0cde1044c817eb3a41ac25b9
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
@@ -583,18 +583,12 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled:
-    UNet: 1
+  cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-<<<<<<< HEAD
-  cloudProjectId: fa422595-d3d5-4415-bd45-eb085d1f56c5
-  projectName: ProjectMana (3)
-=======
-  cloudProjectId: 9fcda81c-e255-48bd-b6a4-029d803887cf
-  projectName: ProjectMana (2)
->>>>>>> dev
-  organizationId: wolfsora2024
+  cloudProjectId: 
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
