@@ -27,9 +27,9 @@ public class SwordScript : MonoBehaviour
         for (int i = 0; i < stuff.Capacity; i++)
         {
             hull = stuff[i];
-            if (hull.GetComponent<AbilityScores>() != null)
+            if (hull.GetComponent<AbilityScore>() != null)
             {
-                hull.GetComponent<AbilityScore>().Health -= damage;
+                hull.GetComponent<AbilityScore>().abilities.Health -= damage;
             }
         }
          
