@@ -9,12 +9,12 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(target != other.gameObject.tag)
+        if(target == other.gameObject.tag)
         {
             GameObject hull = other.gameObject;
-            if(hull.GetComponent<AbilityScores>() != null)
+            if(hull.GetComponent<AbilityScore>() != null)
             {
-                hull.GetComponent<AbilityScore>().Health -= damage;   
+                hull.GetComponent<AbilityScore>().abilities.Health -= damage;   
             }
         }
     }
