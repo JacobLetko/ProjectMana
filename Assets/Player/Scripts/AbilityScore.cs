@@ -351,12 +351,22 @@ Ability Scores and Modifiers
     // Use this for initialization
     void Start()
     {
-
+        SetDefaultValues(abilities);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
+    public void SetAbilityModifiers(Abilities abilities)
+    {
+        //abilities.ArmorClass
+    }
+
+    public void SetDefaultValues(Abilities abilities)
+    {
+        abilities.Cha = 10;
+        abilities.Con = 10;
+        abilities.Dex = 10;
+        abilities.Int = 10;
+        abilities.Str = 10;
+        abilities.Wis = 10;
     }
 }
