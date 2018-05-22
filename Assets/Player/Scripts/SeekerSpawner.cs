@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class SeekerSpawner : MonoBehaviour
 {
     [SerializeField]
@@ -30,7 +31,7 @@ public class SeekerSpawner : MonoBehaviour
         }
     }
 
-    private void FireGun()
+    public void FireGun()
     {
         GameObject bullet = pool.getObj();
         bullet.transform.rotation = transform.rotation;

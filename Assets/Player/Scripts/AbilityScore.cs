@@ -7,18 +7,20 @@ using UnityEngine;
 public struct Abilities
 {
 
+    private float _level;
+
     //What shows up on the UI---------------------------------------------------
 
 
-
-
+    
+    
     private float _magicDamage;
     private float _physicalDamage;
     private float _armorClass;
     private float _health;
     private float _manaCap;
     private float _manaRegeneration;
-
+    private float _experienceGainModifier;
 
     public float MagicDamage
     {
@@ -114,6 +116,7 @@ public struct Abilities
     private float _wis;
     [SerializeField]
     private float _cha;
+
     public float Str
     {
         get
@@ -319,6 +322,32 @@ public struct Abilities
             _healthAbsorbtion = value;
         }
     }
+
+    public float Level
+    {
+        get
+        {
+            return _level;
+        }
+
+        set
+        {
+            _level = value;
+        }
+    }
+
+    public float ExperienceGainModifier
+    {
+        get
+        {
+            return _experienceGainModifier;
+        }
+
+        set
+        {
+            _experienceGainModifier = value;
+        }
+    }
 }
 
 
@@ -355,9 +384,17 @@ Ability Scores and Modifiers
     }
 
 
-    public void SetAbilityModifiers(Abilities abilities)
+    public void SetStatusScores(Abilities abilities)
     {
-        //abilities.ArmorClass
+        abilities.ArmorClass = 11 + GetMod(abilities.Dex);
+        abilities.Health = 8 + GetMod(abilities.Con);
+        abilities.PhysicalDamage = 6 + GetMod(abilities.Str);
+        abilities.MagicDamage = 2 + GetMod(abilities.Cha);//psuedo-magic massile damage       
+    }
+
+    public float GetMod(float val)
+    {
+        return Mathf.Floor((val - 10) / 2);
     }
 
     public void SetDefaultValues(Abilities abilities)
