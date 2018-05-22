@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  productGUID: 82335d078aef865449a9254123b732b0
+  productGUID: d0295e2d62eaedc4d97fa7c467b4bbe8
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
@@ -587,8 +587,13 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
+<<<<<<< HEAD
   cloudProjectId: fa422595-d3d5-4415-bd45-eb085d1f56c5
   projectName: ProjectMana (3)
+=======
+  cloudProjectId: 9fcda81c-e255-48bd-b6a4-029d803887cf
+  projectName: ProjectMana (2)
+>>>>>>> dev
   organizationId: wolfsora2024
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
