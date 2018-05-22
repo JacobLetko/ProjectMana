@@ -9,7 +9,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(target != other.gameObject.tag)
+        if(target == other.gameObject.tag)
         {
             GameObject hull = other.gameObject;
             if(hull.GetComponent<AbilityScore>() != null)

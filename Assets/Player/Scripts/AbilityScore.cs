@@ -7,18 +7,21 @@ using UnityEngine;
 public struct Abilities
 {
 
+
+
     //What shows up on the UI---------------------------------------------------
 
 
-
-
+    
+    
     private float _magicDamage;
     private float _physicalDamage;
     private float _armorClass;
+    [SerializeField]
     private float _health;
     private float _manaCap;
     private float _manaRegeneration;
-
+    private float _experienceGainModifier;
 
     public float MagicDamage
     {
@@ -114,6 +117,7 @@ public struct Abilities
     private float _wis;
     [SerializeField]
     private float _cha;
+
     public float Str
     {
         get
@@ -225,7 +229,7 @@ public struct Abilities
 
     private void OnChaUpdate()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
 
@@ -319,45 +323,87 @@ public struct Abilities
             _healthAbsorbtion = value;
         }
     }
+
+
+
+    public float ExperienceGainModifier
+    {
+        get
+        {
+            return _experienceGainModifier;
+        }
+
+        set
+        {
+            _experienceGainModifier = value;
+        }
+    }
+
+
+
 }
 
 
 public class AbilityScore : MonoBehaviour
 {
     [Tooltip("Determines all underlying stats for the player. Functions almost exactly like D&D ability scores.")]
-    public Abilities abilities;
+    public Abilities abilities = new Abilities();
+    public delegate void TouchAbility();
+    public TouchAbility abilityTouch;
+    private float _level;
+    public float Level
+    {
+        get
+        {
+            return _level;
+        }
 
-
-/*
-    Score Modifier
-Ability Scores and Modifiers
-1	−5
-2–3	−4
-4–5	−3
-6–7	−2
-8–9	−1
-10–11	+0
-12–13	+1
-14–15	+2
-16–17	+3
-18–19	+4
-20–21	+5
-22–23	+6
-24–25	+7
-26–27	+8
-28–29	+9
-30	+10
-*/
+        set
+        {
+            _level = value;
+            abilityTouch();
+        }
+    }
+    /*
+        Score Modifier
+    Ability Scores and Modifiers
+    1	−5
+    2–3	−4
+    4–5	−3
+    6–7	−2
+    8–9	−1
+    10–11	+0
+    12–13	+1
+    14–15	+2
+    16–17	+3
+    18–19	+4
+    20–21	+5
+    22–23	+6
+    24–25	+7
+    26–27	+8
+    28–29	+9
+    30	+10
+    */
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         SetDefaultValues(abilities);
+        SetStatusScores(abilities);
     }
 
 
-    public void SetAbilityModifiers(Abilities abilities)
+    public float GetMod(float val)
     {
-        //abilities.ArmorClass
+        return Mathf.Floor((val - 10) / 2);
+    }
+
+    public Abilities SetStatusScores(Abilities abilities)
+    {
+        abilities.ArmorClass = 11 + GetMod(abilities.Dex);
+        abilities.Health = 8 + GetMod(abilities.Con);
+        abilities.PhysicalDamage = 6 + GetMod(abilities.Str);
+        abilities.MagicDamage = 2 + GetMod(abilities.Cha);//psuedo-magic massile damage
+        return abilities;
     }
 
     public void SetDefaultValues(Abilities abilities)
