@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         //Reset direction on frame start----------------------------------------
         Vert = 0;
         Horz = 0;
-        
+
 
 
         //Recieve input--------------------------------------------------------
@@ -98,17 +98,7 @@ public class PlayerMovement : MonoBehaviour
         //Translate position---------------------------------------------------
         if (isJumping)
         {
-            //Keyframe lastFrame = curve.keys[curve.length - 1];
-            //if (lastFrame.time - Time.time >= 1)
-            //{
-            //    isJumping = false;
-            //}
-            //else
-            //{
-            //    jumpOffset = curve.Evaluate(Time.time / jumpEvaluationScale);
-            //    transform.position = new Vector3(transform.position.x, jumpOffset * jumpHeight, transform.position.z);
-            //}
-
+            Debug.Log("Trying to jump");
             float jumpY = curve.Evaluate(jumpTime) * jumpHeight;
             rigidBody.AddForce(new Vector3(0, jumpY, 0));
 
@@ -117,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
             if (jumpTime >= 1)
             {
                 isJumping = false;
+
                 //transform.position =new Vector3(transform.position.x, startY, transform.position.z);
             }
         }
@@ -136,6 +127,9 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit detectGround;
     bool grounded = true;
     float jumpCoolDown;
+
+
+
     void OnJumpUpdate()
     {
         if (isJumping == false)
