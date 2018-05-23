@@ -36,9 +36,13 @@ public class PlayerController : MonoBehaviour
         {
             if (rangeAtkTimer >= 1 / RateOfFire)
             {
-                rangedAttack.FireGun(abilityScores.abilities.MagicDamage);
-                rangeAtkTimer = 0;
-                Debug.Log("ranged");
+                for (int i = 0; i < 3; i++)
+                {
+                    rangedAttack.FireGun(abilityScores.abilities.MagicDamage);
+                    rangeAtkTimer = 0;
+                    Debug.Log("ranged");
+                }
+
             }
         }
 
