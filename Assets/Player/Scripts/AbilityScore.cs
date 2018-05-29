@@ -38,6 +38,7 @@ public struct Abilities
     private float _armorClass;
     [SerializeField]
     private float _health;
+    private float _mana;
     private float _manaCap;
     private float _manaRegeneration;
     [SerializeField]
@@ -142,8 +143,20 @@ public struct Abilities
         }
     }
 
+    public float Mana
+    {
+        get
+        {
+            return _mana;
+        }
 
-    
+        set
+        {
+            _mana = value;
+        }
+    }
+
+
     //Ability scores-----------------------------------------------------
 
     [SerializeField]
