@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ExperienceGain : MonoBehaviour
 {
-    private GameObject _player;
+    [SerializeField]
+    private GameObject _reciever;
     private AbilityScore _myAbilitiyScore;
 
     public int experienceReward = 100;
@@ -20,10 +21,10 @@ public class ExperienceGain : MonoBehaviour
             _myAbilitiyScore.abilities.healthMonitor += GiveExperience;
         }
 
-        _player = GameObject.FindGameObjectWithTag("Player");
-        if (_player == null)
+        _reciever = GameObject.FindGameObjectWithTag("Player");
+        if (_reciever == null)
         {
-            Debug.LogError("No Player detected, check tags and objects");
+            Debug.LogError("No reciever for experience points detected, check tags and objects");
         }
     }
 
@@ -31,7 +32,7 @@ public class ExperienceGain : MonoBehaviour
     {
         if (_myAbilitiyScore.abilities.Health <= 0)
         {
-            _player.GetComponent<AbilityScore>().abilities.Experience += experienceReward;
+            _reciever.GetComponent<AbilityScore>().abilities.Experience += experienceReward;
             Destroy(gameObject);
         }
     }
