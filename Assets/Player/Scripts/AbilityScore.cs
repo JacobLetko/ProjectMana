@@ -6,14 +6,16 @@ using UnityEngine;
 [Serializable]
 public struct Abilities
 {
-
+    //Delegates-----------------------------------------------------------------
+    public delegate void HealthMonitor();
+    public HealthMonitor healthMonitor;
 
 
     //What shows up on the UI---------------------------------------------------
 
 
-    
-    
+
+
     private float _magicDamage;
     private float _physicalDamage;
     private float _armorClass;
@@ -21,6 +23,8 @@ public struct Abilities
     private float _health;
     private float _manaCap;
     private float _manaRegeneration;
+    [SerializeField]
+    private float _experience;
     private float _experienceGainModifier;
 
     public float MagicDamage
@@ -73,6 +77,11 @@ public struct Abilities
         set
         {
             _health = value;
+            if (healthMonitor != null)
+            {
+                healthMonitor();
+            }
+
         }
     }
 
@@ -102,6 +111,18 @@ public struct Abilities
         }
     }
 
+    public float Experience
+    {
+        get
+        {
+            return _experience;
+        }
+
+        set
+        {
+            _experience = value;
+        }
+    }
 
     //Ability scores-----------------------------------------------------
 
@@ -340,7 +361,6 @@ public struct Abilities
     }
 
 
-
 }
 
 
@@ -348,9 +368,14 @@ public class AbilityScore : MonoBehaviour
 {
     [Tooltip("Determines all underlying stats for the player. Functions almost exactly like D&D ability scores.")]
     public Abilities abilities = new Abilities();
+
+
+
+
     public delegate void TouchAbility();
     public TouchAbility abilityTouch;
     private float _level;
+
     public float Level
     {
         get
@@ -364,6 +389,8 @@ public class AbilityScore : MonoBehaviour
             abilityTouch();
         }
     }
+
+
     /*
         Score Modifier
     Ability Scores and Modifiers

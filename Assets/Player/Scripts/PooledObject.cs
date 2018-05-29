@@ -53,8 +53,15 @@ public class PooledObject : MonoBehaviour
     {
         if (other.transform.tag == "Wall")
         {
+
             timer = 0;
             returnToPool();
         }
+        //else if (other.transform.tag == "Ground") 
+        //{
+
+            //timer = 0;
+            //returnToPool();
+        //}
     }
 }
