@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     public SeekerSpawner rangedAttack;
     public SwordScript meleeAttack;
     public AbilityScore abilityScores;
-
+    [SerializeField]
+    private bool _paused = false;
     
 
     public ObjectPool pool;
@@ -27,34 +28,45 @@ public class PlayerController : MonoBehaviour
         meleeAtkTimer = 1 / RateOfFire;
         meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
         Debug.Log(abilityScores.abilities.PhysicalDamage);
+        
     }
 
     void Update()
     {
-        rangeAtkTimer += Time.deltaTime;
-        if (Input.GetMouseButton(0))
+        if (!_paused)
         {
-            if (rangeAtkTimer >= 1 / RateOfFire)
+            rangeAtkTimer += Time.deltaTime;
+            if (Input.GetMouseButton(0))
             {
-                rangedAttack.FireGun(abilityScores.abilities.MagicDamage);
-                rangeAtkTimer = 0;
-                Debug.Log("ranged");
+                if (rangeAtkTimer >= 1 / RateOfFire)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        rangedAttack.FireGun(abilityScores.abilities.MagicDamage);
+                        rangeAtkTimer = 0;
+                        Debug.Log("ranged");
+                    }
+
+                }
+            }
+
+            meleeAtkTimer += Time.deltaTime;
+            if (Input.GetMouseButton(1))
+            {
+                if (meleeAtkTimer >= 1 / RateOfFire)
+                {
+                    meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
+                    meleeAttack.attack();
+                    rangeAtkTimer = 0;
+                    Debug.Log("Melee");
+                }
             }
         }
+    }
 
-        meleeAtkTimer += Time.deltaTime;
-        if (Input.GetMouseButton(1))
-        {
-            if (meleeAtkTimer >= 1 / RateOfFire)
-            {
-                meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
-                meleeAttack.attack();
-                rangeAtkTimer = 0;
-                Debug.Log("Melee");
-            }
-        }
-
-
+    public void PausePlayer(bool val)
+    {
+        _paused = val;
     }
 
 }

@@ -6,14 +6,29 @@ using UnityEngine;
 [Serializable]
 public struct Abilities
 {
+    //Delegates-----------------------------------------------------------------Each delegate runs its assigned functions on their respective monitored variables change
+    public delegate void HealthMonitor();
+    public HealthMonitor healthMonitor;
+
+    public delegate void StrMonitor();
+    public StrMonitor strMonitor;
+
+    public delegate void DexMonitor();
+    public DexMonitor dexMonitor;
+
+    public delegate void ConMonitor();
+    public ConMonitor conMonitor;
+
+    public delegate void IntMonitor();
+    public IntMonitor intMonitor;
 
 
 
     //What shows up on the UI---------------------------------------------------
 
 
-    
-    
+
+
     private float _magicDamage;
     private float _physicalDamage;
     private float _armorClass;
@@ -21,6 +36,8 @@ public struct Abilities
     private float _health;
     private float _manaCap;
     private float _manaRegeneration;
+    [SerializeField]
+    private float _experience;
     private float _experienceGainModifier;
 
     public float MagicDamage
@@ -73,6 +90,11 @@ public struct Abilities
         set
         {
             _health = value;
+            if (healthMonitor != null)
+            {
+                healthMonitor();
+            }
+
         }
     }
 
@@ -102,6 +124,18 @@ public struct Abilities
         }
     }
 
+    public float Experience
+    {
+        get
+        {
+            return _experience;
+        }
+
+        set
+        {
+            _experience = value;
+        }
+    }
 
     //Ability scores-----------------------------------------------------
 
@@ -128,14 +162,10 @@ public struct Abilities
         set
         {
             _str = value;
-            OnStrUpdate();
+
         }
     }
 
-    private void OnStrUpdate()
-    {
-        throw new NotImplementedException();
-    }
 
     public float Dex
     {
@@ -147,14 +177,9 @@ public struct Abilities
         set
         {
             _dex = value;
-            OnDexUpdate();
         }
     }
 
-    private void OnDexUpdate()
-    {
-        throw new NotImplementedException();
-    }
 
     public float Con
     {
@@ -166,14 +191,9 @@ public struct Abilities
         set
         {
             _con = value;
-            OnConUpdate();
         }
     }
 
-    private void OnConUpdate()
-    {
-        throw new NotImplementedException();
-    }
 
     public float Int
     {
@@ -185,14 +205,9 @@ public struct Abilities
         set
         {
             _int = value;
-            OnIntUpdate();
         }
     }
 
-    private void OnIntUpdate()
-    {
-        throw new NotImplementedException();
-    }
 
     public float Wis
     {
@@ -204,14 +219,9 @@ public struct Abilities
         set
         {
             _wis = value;
-            OnWisUpdate();
         }
     }
 
-    private void OnWisUpdate()
-    {
-        throw new NotImplementedException();
-    }
 
     public float Cha
     {
@@ -223,14 +233,9 @@ public struct Abilities
         set
         {
             _cha = value;
-            OnChaUpdate();
         }
     }
 
-    private void OnChaUpdate()
-    {
-        //throw new NotImplementedException();
-    }
 
 
 
@@ -340,7 +345,6 @@ public struct Abilities
     }
 
 
-
 }
 
 
@@ -348,9 +352,14 @@ public class AbilityScore : MonoBehaviour
 {
     [Tooltip("Determines all underlying stats for the player. Functions almost exactly like D&D ability scores.")]
     public Abilities abilities = new Abilities();
+
+
+
+
     public delegate void TouchAbility();
     public TouchAbility abilityTouch;
     private float _level;
+
     public float Level
     {
         get
@@ -364,6 +373,8 @@ public class AbilityScore : MonoBehaviour
             abilityTouch();
         }
     }
+
+
     /*
         Score Modifier
     Ability Scores and Modifiers
