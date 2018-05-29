@@ -14,7 +14,11 @@ public class BulletScript : MonoBehaviour
             GameObject hull = other.gameObject;
             if(hull.GetComponent<AbilityScore>() != null)
             {
-                hull.GetComponent<AbilityScore>().abilities.Health -= damage;   
+                if (hull.GetComponent<AbilityScore>().abilities.Health > 0)
+                {
+                    hull.GetComponent<AbilityScore>().abilities.Health -= damage;
+                }
+
             }
         }
     }

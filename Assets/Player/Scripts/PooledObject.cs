@@ -16,7 +16,7 @@ public class PooledObject : MonoBehaviour
     Vector3 deviationVect;
     public AnimationCurve curve;
 
-    public void returnToPool()
+    public void ReturnToPool()
     {
         gameObject.SetActive(false);
         transform.parent = myPool.transform;
@@ -42,26 +42,46 @@ public class PooledObject : MonoBehaviour
         if (timer >= timeLimmit)
         {
             timer = 0;
-            returnToPool();
+            ReturnToPool();
         }
         transform.Translate(((Vector3.forward + deviationVect) + (Vector3.right * offset)) * speed * Time.deltaTime);
         transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.Self);
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.transform.tag == "Wall")
+        if (collision.collider.transform.tag == "Wall")
         {
-
             timer = 0;
-            returnToPool();
+            ReturnToPool();
         }
-        //else if (other.transform.tag == "Ground") 
-        //{
 
-            //timer = 0;
-            //returnToPool();
-        //}
+        if (collision.collider.GetComponent<AIMovment>() != null)
+        {
+            timer = 0;
+            ReturnToPool();
+        }
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.transform.tag == "Wall")
+    //    {
+    //        timer = 0;
+    //        ReturnToPool();
+    //    }
+
+    //    if (other.GetComponent<AIMovment>() != null)
+    //    {
+    //        timer = 0;
+    //        ReturnToPool();
+    //    }
+    //    //else if (other.transform.tag == "Ground") 
+    //    //{
+
+    //        //timer = 0;
+    //        //returnToPool();
+    //    //}
+    //}
 }

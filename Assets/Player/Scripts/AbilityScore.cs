@@ -96,6 +96,7 @@ public struct Abilities
             _health = value;
             if (healthMonitor != null)
             {
+                Debug.Log("AAAAAAAAAA");
                 healthMonitor();
             }
 
@@ -141,6 +142,8 @@ public struct Abilities
         }
     }
 
+
+    
     //Ability scores-----------------------------------------------------
 
     [SerializeField]
@@ -166,6 +169,11 @@ public struct Abilities
         set
         {
             _str = value;
+            if (strMonitor != null)
+            {
+                strMonitor();
+            }
+
 
         }
     }
@@ -181,6 +189,11 @@ public struct Abilities
         set
         {
             _dex = value;
+            if (dexMonitor != null)
+            {
+                dexMonitor();
+            }
+
         }
     }
 
@@ -195,6 +208,11 @@ public struct Abilities
         set
         {
             _con = value;
+            if (conMonitor != null)
+            {
+                conMonitor();
+            }
+
         }
     }
 
@@ -209,6 +227,11 @@ public struct Abilities
         set
         {
             _int = value;
+            if (intMonitor != null)
+            {
+                intMonitor();
+            }
+
         }
     }
 
@@ -223,6 +246,11 @@ public struct Abilities
         set
         {
             _wis = value;
+            if (wisMonitor != null)
+            {
+                wisMonitor();
+            }
+
         }
     }
 
@@ -237,6 +265,11 @@ public struct Abilities
         set
         {
             _cha = value;
+            if (chaMonitor != null)
+            {
+                chaMonitor();
+            }
+
         }
     }
 
@@ -403,7 +436,7 @@ public class AbilityScore : MonoBehaviour
     void Awake()
     {
         SetDefaultValues(abilities);
-        SetStatusScores(abilities);
+        abilities = SetStatusScores(abilities);
     }
 
 
