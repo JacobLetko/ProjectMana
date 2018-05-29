@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseScript : MonoBehaviour
 {
     public GameObject wheel;
     public GameObject menu;
+    public GameObject player;
 
-    bool paused = false;
+    public bool paused;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class PauseScript : MonoBehaviour
         if (Input.GetKeyDown("escape") && paused == false)
         {
             paused = true;
+            player.GetComponent<PlayerController>().PausePlayer(paused);
             Time.timeScale = 0.0f;
             menu.gameObject.SetActive(true);
         }
@@ -28,7 +31,9 @@ public class PauseScript : MonoBehaviour
         else if (Input.GetKeyDown("escape") && paused == true)
         {
             paused = false;
+            player.GetComponent<PlayerController>().PausePlayer(paused);
             Time.timeScale = 1.0f;
+            wheel.SetActive(false);
             menu.SetActive(false);
         }
 
