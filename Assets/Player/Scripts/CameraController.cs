@@ -29,7 +29,9 @@ public class CameraController : MonoBehaviour
         //vertLookRotation = Mathf.Clamp(vertLookRotation, -60, 60);
 
         //camT.localEulerAngles = Vector3.left * vertLookRotation;
-
-        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensX);//Do not multiply by time.deltatime as mouse input is frame independant
+        if (Time.timeScale < 0)
+        {
+            transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensX);//Do not multiply by time.deltatime as mouse input is frame independant          
+        }
     }
 }
