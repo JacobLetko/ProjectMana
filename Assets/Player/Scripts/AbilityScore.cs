@@ -22,7 +22,11 @@ public struct Abilities
     public delegate void IntMonitor();
     public IntMonitor intMonitor;
 
+    public delegate void WisMonitor();
+    public WisMonitor wisMonitor;
 
+    public delegate void ChaMonitor();
+    public ConMonitor chaMonitor;
 
     //What shows up on the UI---------------------------------------------------
 
