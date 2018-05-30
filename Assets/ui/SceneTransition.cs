@@ -13,8 +13,8 @@ public class SceneTransition : MonoBehaviour
     public void LoadSceneByName(string name)
     {
         Time.timeScale = 1;
-        if (name == "Main Menu")
-            Cursor.lockState = CursorLockMode.Locked;
+        if (name != "Main Menu")
+            Cursor.visible = false;
         SceneManager.LoadScene(name);
     }
 
