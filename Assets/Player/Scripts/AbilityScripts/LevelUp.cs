@@ -17,7 +17,6 @@ public class LevelUp : MonoBehaviour
         {
             _myAbilitiyScore = GetComponent<AbilityScore>();
             _myAbilitiyScore.abilities.expMonitor += LevelAttained;//the health monitor delegate inside this objects ability score script will now run "GiveExperience" when it's health variable is updated
-            _myAbilitiyScore.levelMonitor += EditAbilities;
         }
     }
 
@@ -29,11 +28,9 @@ public class LevelUp : MonoBehaviour
 
     public void LevelAttained()
     {
-        _myAbilitiyScore.Level += 1;
-    }
-
-    public void EditAbilities()
-    {
-
+        if (_myAbilitiyScore.abilities.Experience >= _myAbilitiyScore.Level * 100)
+        {
+            _myAbilitiyScore.Level += 1;
+        }
     }
 }
