@@ -13,7 +13,9 @@ public class HUD : MonoBehaviour
     public Slider healthBar;
     public Slider manaBar;
 
-    public Text healthText, manaText, StrText, DexText, ConText, IntText, WisText, ChaText, ExpText, LevelText;
+    private List<GameObject> stats;
+
+    public GameObject healthText, manaText, StrText, DexText, ConText, IntText, WisText, ChaText, ExpText, LevelText;
 
     public GameObject player;
 
@@ -23,12 +25,15 @@ public class HUD : MonoBehaviour
         mana = player.GetComponent<AbilityScore>().abilities.Mana;
         _Health = health;
         _mana = mana;
+
+        //stats[0] = healthText;
+        //stats[1] = manaText;
     }
 
     private void Update()
     {
         healthBar.value = calcHealth();
-        manaBar.value = calcMana();
+        //manaBar.value = calcMana();
 
     }
 

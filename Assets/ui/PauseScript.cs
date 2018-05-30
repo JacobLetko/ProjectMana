@@ -8,6 +8,7 @@ public class PauseScript : MonoBehaviour
     public GameObject wheel;
     public GameObject menu;
     public GameObject player;
+    public GameObject HUD;
 
     public bool paused;
 
@@ -26,6 +27,7 @@ public class PauseScript : MonoBehaviour
             player.GetComponent<PlayerController>().PausePlayer(paused);
             cursorstate(true);
             Time.timeScale = 0.0f;
+            HUD.gameObject.SetActive(false);
             menu.gameObject.SetActive(true);
         }
 
@@ -37,6 +39,7 @@ public class PauseScript : MonoBehaviour
             Time.timeScale = 1.0f;
             wheel.SetActive(false);
             menu.SetActive(false);
+            HUD.gameObject.SetActive(true);
         }
 
         if (Input.GetKey("tab"))
