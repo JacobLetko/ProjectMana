@@ -10,6 +10,9 @@ public struct Abilities
     public delegate void HealthMonitor();
     public HealthMonitor healthMonitor;
 
+    public delegate void ExpMonitor();
+    public ExpMonitor expMonitor;
+
     public delegate void StrMonitor();
     public StrMonitor strMonitor;
 
@@ -27,6 +30,7 @@ public struct Abilities
 
     public delegate void ChaMonitor();
     public ConMonitor chaMonitor;
+
 
     //What shows up on the UI---------------------------------------------------
 
@@ -140,6 +144,7 @@ public struct Abilities
         set
         {
             _experience = value;
+            expMonitor();
         }
     }
 
@@ -407,7 +412,7 @@ public class AbilityScore : MonoBehaviour
 
 
     public delegate void TouchAbility();
-    public TouchAbility abilityTouch;
+    public TouchAbility levelMonitor;
     private float _level;
 
     public float Level
@@ -420,7 +425,7 @@ public class AbilityScore : MonoBehaviour
         set
         {
             _level = value;
-            abilityTouch();
+            levelMonitor();
         }
     }
 
