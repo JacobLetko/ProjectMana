@@ -31,12 +31,16 @@ public class ExperienceGain : MonoBehaviour
 
     void GiveExperience()//if the objects health hits zero then the experience reward is given to the reciever
     {
+        _isDead = true;
         if (_myAbilitiyScore.abilities.Health <= 0)
         {
-
+            if (_isDead)
+            {
                 _reciever.GetComponent<AbilityScore>().abilities.Experience += experienceReward;
 
                 Destroy(gameObject);
+            }
+
 
         }
     }
