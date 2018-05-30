@@ -6,11 +6,18 @@ using UnityEngine.AI;
 public class AIMovment : MonoBehaviour
 {
     public GameObject player;
-    NavMeshAgent nav;
+    NavMeshAgent _nav;
+    [SerializeField]
+    private float _searchRadius;
 
     private void Start()
     {
-        nav = GetComponent<NavMeshAgent>();
+ 
+        _nav = GetComponent<NavMeshAgent>();
+        if (_nav == null)
+        {
+            Debug.LogError("No NavMeshAgent detected");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,9 +34,18 @@ public class AIMovment : MonoBehaviour
 
     private void Update()
     {
+        if (player == null)
+        {
+            RaycastHit hit;
+            if (Physics.SphereCast(transform.position, _searchRadius, Vector3.zero, out hit, 0, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+            {
+
+            }
+        }
+
         if(player != null)
         {
-            nav.SetDestination(player.transform.position);
+            _nav.SetDestination(player.transform.position);
         }
     }
 }

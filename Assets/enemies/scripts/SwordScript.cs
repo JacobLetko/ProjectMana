@@ -15,7 +15,7 @@ public class SwordScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == target)
+        if (other.tag == target)
         {
             _stuff.Add(other.gameObject);
         }
@@ -31,6 +31,7 @@ public class SwordScript : MonoBehaviour
         GameObject hull;
         for (int i = 0; i < _stuff.Count; i++)
         {
+
             if (_stuff[i] != null)
             {
                 hull = _stuff[i];
@@ -39,8 +40,9 @@ public class SwordScript : MonoBehaviour
 
                     hull.GetComponent<AbilityScore>().abilities.Health -= damage;
                 }
+
             }
         }
-         
+
     }
 }

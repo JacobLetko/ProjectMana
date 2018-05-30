@@ -144,7 +144,11 @@ public struct Abilities
         set
         {
             _experience = value;
-            expMonitor();
+            if (expMonitor != null)
+            {
+                expMonitor();
+            }
+
         }
     }
 
