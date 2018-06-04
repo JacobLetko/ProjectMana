@@ -20,12 +20,6 @@ public class LevelUp : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void LevelAttained()
     {
         if (_myAbilitiyScore.abilities.Experience >= _myAbilitiyScore.Level * 100)
