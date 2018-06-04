@@ -8,14 +8,10 @@ public class HUD : MonoBehaviour
     public float health;
     private float _Health;
     public float mana;
-    private float _mana;
+    private float _Mana;
 
     public Slider healthBar;
     public Slider manaBar;
-
-    private List<GameObject> stats;
-
-    public GameObject healthText, manaText, StrText, DexText, ConText, IntText, WisText, ChaText, ExpText, LevelText;
 
     public GameObject player;
 
@@ -24,10 +20,7 @@ public class HUD : MonoBehaviour
         health = player.GetComponent<AbilityScore>().abilities.Health;
         mana = player.GetComponent<AbilityScore>().abilities.Mana;
         _Health = health;
-        _mana = mana;
-
-        //stats[0] = healthText;
-        //stats[1] = manaText;
+        _Mana = mana;
     }
 
     private void Update()
@@ -39,13 +32,13 @@ public class HUD : MonoBehaviour
 
     float calcHealth()
     {
-        _Health = player.GetComponent<AbilityScore>().abilities.Health;
-        return player.GetComponent<AbilityScore>().abilities.Health / health;
+        health = player.GetComponent<AbilityScore>().abilities.Health;
+        return player.GetComponent<AbilityScore>().abilities.Health / _Health;
     }
 
     float calcMana()
     {
-        _mana = player.GetComponent<AbilityScore>().abilities.Mana;
-        return player.GetComponent<AbilityScore>().abilities.Mana / mana;
+        mana = player.GetComponent<AbilityScore>().abilities.Mana;
+        return player.GetComponent<AbilityScore>().abilities.Mana /_Mana;
     }
 }
