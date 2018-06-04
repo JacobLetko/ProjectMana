@@ -88,6 +88,6 @@ public class PauseScript : MonoBehaviour
         DexText.GetComponent<TextMeshProUGUI>().text = "Dex: " + stats.abilities.Dex.ToString();
         IntText.GetComponent<TextMeshProUGUI>().text = "Int: " + stats.abilities.Int.ToString();
         WisText.GetComponent<TextMeshProUGUI>().text = "Wis: " + stats.abilities.Wis.ToString();
-        ChaText.GetComponent<TextMeshProUGUI>().text = "Cha: " + stats.abilities.Cha.ToString()
+        ChaText.GetComponent<TextMeshProUGUI>().text = "Cha: " + stats.abilities.Cha.ToString();
     }
 }
