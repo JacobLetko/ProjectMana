@@ -2589,51 +2589,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 20267651699996404, guid: 39c677f70275d904eb06b40b5a08a93a,
-        type: 2}
-      propertyPath: m_BackGroundColor.r
-      value: 0
+    - target: {fileID: 4605221314703656, guid: 39c677f70275d904eb06b40b5a08a93a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.046529204
       objectReference: {fileID: 0}
-    - target: {fileID: 20267651699996404, guid: 39c677f70275d904eb06b40b5a08a93a,
-        type: 2}
-      propertyPath: m_BackGroundColor.g
-      value: 0
+    - target: {fileID: 4233367421727048, guid: 39c677f70275d904eb06b40b5a08a93a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.046529204
       objectReference: {fileID: 0}
-    - target: {fileID: 20267651699996404, guid: 39c677f70275d904eb06b40b5a08a93a,
-        type: 2}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20267651699996404, guid: 39c677f70275d904eb06b40b5a08a93a,
-        type: 2}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 135282413260797260, guid: 39c677f70275d904eb06b40b5a08a93a,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4491685751431698, guid: 39c677f70275d904eb06b40b5a08a93a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 4739795722375314, guid: 39c677f70275d904eb06b40b5a08a93a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 135446681985865002, guid: 39c677f70275d904eb06b40b5a08a93a,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 0.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 114150855117013290, guid: 39c677f70275d904eb06b40b5a08a93a,
-        type: 2}
-      propertyPath: jumpDuration
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 135282413260797260, guid: 39c677f70275d904eb06b40b5a08a93a, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39c677f70275d904eb06b40b5a08a93a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &498012197
