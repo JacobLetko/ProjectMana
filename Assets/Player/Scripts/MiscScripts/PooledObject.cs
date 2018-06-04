@@ -57,6 +57,8 @@ public class PooledObject : MonoBehaviour
             ReturnToPool();
         }
 
+
+
         if (collision.collider.GetComponent<AIMovment>() != null)
         {
             timer = 0;
@@ -64,24 +66,24 @@ public class PooledObject : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.transform.tag == "Wall")
-    //    {
-    //        timer = 0;
-    //        ReturnToPool();
-    //    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Wall")
+        {
+            timer = 0;
+            ReturnToPool();
+        }
 
-    //    if (other.GetComponent<AIMovment>() != null)
-    //    {
-    //        timer = 0;
-    //        ReturnToPool();
-    //    }
-    //    //else if (other.transform.tag == "Ground") 
-    //    //{
+        if (other.GetComponent<AIMovment>() != null)
+        {
+            timer = 0;
+            ReturnToPool();
+        }
+        //else if (other.transform.tag == "Ground") 
+        //{
 
-    //        //timer = 0;
-    //        //returnToPool();
-    //    //}
-    //}
+        //timer = 0;
+        //returnToPool();
+        //}
+    }
 }
