@@ -26,6 +26,7 @@ public class AIMovment : MonoBehaviour
         if (player == null)
         {
             RaycastHit hit;
+          
             if (Physics.SphereCast(transform.position, _searchRadius, Vector3.zero, out hit, 0, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
                 player = hit.collider.transform;
@@ -43,5 +44,11 @@ public class AIMovment : MonoBehaviour
         {
             _nav.SetDestination(player.position);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position,_searchRadius);
     }
 }
