@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AIMovment : MonoBehaviour
 {
-    public GameObject player;
+    public Transform player;
     NavMeshAgent _nav;
     [SerializeField]
     private float _searchRadius;
@@ -20,17 +20,6 @@ public class AIMovment : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-            player = other.gameObject;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-            player = null;
-    }
 
     private void Update()
     {
@@ -39,13 +28,20 @@ public class AIMovment : MonoBehaviour
             RaycastHit hit;
             if (Physics.SphereCast(transform.position, _searchRadius, Vector3.zero, out hit, 0, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
-
+                player = hit.collider.transform;
+            }
+            else
+            {
+                if (player != null)
+                {
+                    player = null;
+                }
             }
         }
 
         if(player != null)
         {
-            _nav.SetDestination(player.transform.position);
+            _nav.SetDestination(player.position);
         }
     }
 }
