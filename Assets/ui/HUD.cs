@@ -5,9 +5,19 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public float health;
+    public float health
+    {
+        get { return player.GetComponent<AbilityScore>().abilities.Health; }
+        set { }
+    }
     private float _Health;
-    public float mana;
+
+
+    public float mana
+    {
+        get { return player.GetComponent<AbilityScore>().abilities.ManaCap; }
+        set {  }
+    }
     private float _Mana;
 
     public Slider healthBar;
