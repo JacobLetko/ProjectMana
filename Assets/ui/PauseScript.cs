@@ -11,6 +11,8 @@ public class PauseScript : MonoBehaviour
     public GameObject HUD;
     public bool paused;
 
+    public GameObject camera;
+
     [Header("stats stuff")]
     public GameObject player;
     private PlayerController controll;
@@ -68,10 +70,11 @@ public class PauseScript : MonoBehaviour
     private void cursorstate(bool state)
     {
         if (state == false)
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Confined;
         else
             Cursor.lockState = CursorLockMode.None;
         Cursor.visible = state;
+        camera.SetActive(state);
     }
 
     private void getStats()
