@@ -74,7 +74,7 @@ public class PauseScript : MonoBehaviour
         else
             Cursor.lockState = CursorLockMode.None;
         Cursor.visible = state;
-        camera.SetActive(state);
+        camera.SetActive(!state);
     }
 
     private void getStats()
