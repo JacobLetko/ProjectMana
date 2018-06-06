@@ -23,6 +23,7 @@ public class AIMovment : MonoBehaviour
 
     private void Update()
     {
+
         if (player == null)
         {
             RaycastHit hit;
@@ -49,6 +50,6 @@ public class AIMovment : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position,_searchRadius);
+        Gizmos.DrawWireSphere(transform.position, _searchRadius);
     }
 }
