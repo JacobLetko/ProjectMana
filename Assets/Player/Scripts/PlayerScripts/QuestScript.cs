@@ -19,12 +19,12 @@ public class QuestScript : MonoBehaviour
         }
         if (thing.name == "chest2")
         {
-            chest1 = true;
+            chest2 = true;
             thing.SetActive(false);
         }
         if (thing.name == "chest3")
         {
-            chest1 = true;
+            chest3 = true;
             thing.SetActive(false);
         }
     }
