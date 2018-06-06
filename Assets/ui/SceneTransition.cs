@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
+    public GameObject chest;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -21,5 +23,13 @@ public class SceneTransition : MonoBehaviour
     public void quit()
     {
         Application.Quit();
+    }
+
+    private void Update()
+    {
+        if(chest != null && chest.active == false)
+        {
+            LoadSceneByName("Win");
+        }
     }
 }
