@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
-
+    public delegate void CurrentEnemyActions();
+    public CurrentEnemyActions currentEnemyActions;
 
     // Use this for initialization
     void Start()
@@ -16,6 +17,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentEnemyActions != null)
+        {
+            currentEnemyActions();
+        }
 
     }
 }

@@ -10,6 +10,9 @@ public struct Abilities
     public delegate void HealthMonitor();
     public HealthMonitor healthMonitor;
 
+    public delegate void HealthCapMonitor();
+    public HealthCapMonitor healthCapMonitor;
+
     public delegate void ExpMonitor();
     public ExpMonitor expMonitor;
 
@@ -42,6 +45,7 @@ public struct Abilities
     private float _armorClass;
     [SerializeField]
     private float _health;
+    private float _healthCap;
     private float _mana;
     private float _manaCap;
     private float _manaRegeneration;
@@ -105,6 +109,24 @@ public struct Abilities
                 healthMonitor();
             }
 
+        }
+    }
+
+
+    public float HealthCap
+    {
+        get
+        {
+            return _healthCap;
+        }
+
+        set
+        {
+            _healthCap = value;
+            if (healthCapMonitor != null)
+            {
+
+            }
         }
     }
 
@@ -396,7 +418,6 @@ public struct Abilities
             _experienceGainModifier = value;
         }
     }
-
 
 }
 
