@@ -318,12 +318,6 @@ public struct Abilities
     }
 
 
-
-
-
-
-
-
     //What does not show up on the UI-------------------------------------------
     private float _speed;
     private float _EvasionCool;

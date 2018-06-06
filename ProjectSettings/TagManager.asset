@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Melee
   - Gun
+  - chest
   layers:
   - Default
   - TransparentFX

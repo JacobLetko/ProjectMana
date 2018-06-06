@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 normalizedDirection;
     public Rigidbody rigidBody;
     public AnimationCurve curve;
+    public Transform camera;
     //float jumpOffset = 0;
     public float jumpHeight = 1;
     //public float jumpEvaluationScale = 1;
@@ -117,8 +118,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.Translate(normalizedDirection.normalized * speed * Time.deltaTime);
-       
+        transform.rotation.Set(0, camera.rotation.x, 0, 0);
 
+
+
+    }
+
+    private Vector3 FindDirection()
+    {
+        Vector3 forwards = camera.TransformDirection(Vector3.forward);
+        forwards.y = 0;
+
+        Vector3 right = camera.TransformDirection(Vector3.right);
+
+        return normalizedDirection.y * forwards + normalizedDirection.x * right;
     }
 
     float jumpTime;

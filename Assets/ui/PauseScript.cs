@@ -11,8 +11,11 @@ public class PauseScript : MonoBehaviour
     public GameObject HUD;
     public bool paused;
 
+    public GameObject camera;
+
     [Header("stats stuff")]
     public GameObject player;
+    private PlayerController controll;
     public GameObject healthText, manaText, StrText, DexText, ConText, IntText, WisText, ChaText, ExpText, LevelText;
 
     void Start()
@@ -20,6 +23,7 @@ public class PauseScript : MonoBehaviour
         paused = false;
         wheel.SetActive(false);
         menu.SetActive(false);
+        controll = player.GetComponent<PlayerController>();
     }
 
     void Update()
@@ -27,8 +31,8 @@ public class PauseScript : MonoBehaviour
         if (Input.GetKeyDown("escape") && paused == false)
         {
             paused = true;
-            player.GetComponent<PlayerController>().PausePlayer(paused);
-            cursorstate(true);
+            controll.PausePlayer(paused);
+            cursorstate(paused);
             getStats();
             Time.timeScale = 0.0f;
             HUD.gameObject.SetActive(false);
@@ -37,13 +41,7 @@ public class PauseScript : MonoBehaviour
 
         else if (Input.GetKeyDown("escape") && paused == true)
         {
-            paused = false;
-            player.GetComponent<PlayerController>().PausePlayer(paused);
-            cursorstate(false);
-            Time.timeScale = 1.0f;
-            wheel.SetActive(false);
-            menu.SetActive(false);
-            HUD.gameObject.SetActive(true);
+            resume();
         }
 
         if (Input.GetKey("tab"))
@@ -53,25 +51,30 @@ public class PauseScript : MonoBehaviour
         }
         else
         {
-            if(!paused)
-                cursorstate(false);
-            wheel.SetActive(false);
+            if (!paused)
+                resume();
         }
     }
 
     public void resume()
     {
         paused = false;
-        player.GetComponent<PlayerController>().PausePlayer(paused);
-        cursorstate(false);
+        controll.PausePlayer(paused);
+        cursorstate(paused);
         Time.timeScale = 1.0f;
         wheel.SetActive(false);
         menu.SetActive(false);
+        HUD.gameObject.SetActive(true);
     }
 
     private void cursorstate(bool state)
     {
+        if (state == false)
+            Cursor.lockState = CursorLockMode.Confined;
+        else
+            Cursor.lockState = CursorLockMode.None;
         Cursor.visible = state;
+        camera.SetActive(!state);
     }
 
     private void getStats()
