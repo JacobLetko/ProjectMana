@@ -105,7 +105,6 @@ public struct Abilities
             _health = value;
             if (healthMonitor != null)
             {
-                Debug.Log("AAAAAAAAAA");
                 healthMonitor();
             }
 

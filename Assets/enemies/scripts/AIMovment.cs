@@ -5,14 +5,27 @@ using UnityEngine.AI;
 
 public class AIMovment : MonoBehaviour
 {
-    public Transform player;
+    public EnemyController controller;
+    public Transform target;
     NavMeshAgent _nav;
     [SerializeField]
     private float _searchRadius;
 
+    private void Awake()
+    {
+        if (GetComponent<EnemyController>() != null)
+        {
+            controller = GetComponent<EnemyController>();
+        }
+        else
+        {
+            Debug.Log("No EnemyController located on: " + gameObject.name);
+        }
+    }
+
+
     private void Start()
     {
- 
         _nav = GetComponent<NavMeshAgent>();
         if (_nav == null)
         {
@@ -23,29 +36,37 @@ public class AIMovment : MonoBehaviour
 
     private void Update()
     {
-
-        if (player == null)
+        if (target == null)
         {
             RaycastHit hit;
           
             if (Physics.SphereCast(transform.position, _searchRadius, Vector3.zero, out hit, 0, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
-                player = hit.collider.transform;
+                if ((hit.collider.transform.tag != "Ground") && (hit.collider.transform.tag != "Wall"))
+                {
+                    target = hit.collider.transform;
+                }
             }
             else
             {
-                if (player != null)
+                if (target != null)
                 {
-                    player = null;
+                    target = null;
                 }
             }
-        }
+        }    
+    }
 
-        if(player != null)
+    public void GoTo()
+    {
+        _nav.destination = target.position;
+        if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
         {
-            _nav.SetDestination(player.position);
+            controller.stateStack.Pop();
+            controller.stateStack.Push(EnemyController.States.ATTACK);
         }
     }
+
 
     void OnDrawGizmosSelected()
     {
