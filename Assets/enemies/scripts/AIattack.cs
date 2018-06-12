@@ -12,7 +12,8 @@ public class AIattack : MonoBehaviour
     public float damage;
     [SerializeField]
     private float _attackRadius;//While target is within range, attack. Otherwise, loop back to chase. If the player dies, go into9 search mode.
-    LayerMask layers;
+    public LayerMask layers;
+    
     private void Start()
     {
         if (GetComponent<EnemyController>() != null)
@@ -23,7 +24,12 @@ public class AIattack : MonoBehaviour
         {
             Debug.Log("No EnemyController located on: " + gameObject.name);
         }
-        damage = GetComponent<AbilityScore>().abilities.PhysicalDamage;
+
+        if (GetComponent<AbilityScore>() != null)
+        {
+            damage = GetComponent<AbilityScore>().abilities.PhysicalDamage;
+        }
+
     }
 
     public IEnumerator AtkTimer()
@@ -45,21 +51,26 @@ public class AIattack : MonoBehaviour
                     {
                         if ((item.tag != "Ground") && (item.tag != "Wall"))
                         {
-                            for (int i = 0; i < targetTags.Length; i++)
+                            if (item.transform != transform)
                             {
-                                if (targetTags[i] == item.tag)
+                                for (int i = 0; i < targetTags.Length; i++)
                                 {
-                                    item.GetComponent<AbilityScore>().abilities.Health -= GetComponent<AIattack>().damage;
-                                    StartCoroutine(GetComponent<AIattack>().AtkTimer());
-
-                                    if (Vector3.Distance(item.transform.position, transform.position) > GetComponent<AIattack>()._attackRadius)
+                                    if (targetTags[i].ToString() == item.tag)
                                     {
-                                        controller.stateStack.Pop();
-                                        controller.stateStack.Push(EnemyController.States.GOTO);
+
+                                        item.gameObject.GetComponent<AbilityScore>().abilities.Health -= damage;
+
+                                        StartCoroutine(AtkTimer());
+
+                                        if (Vector3.Distance(item.transform.position, (transform.position * attackOffset)) > _attackRadius)
+                                        {
+                                            controller.stateStack.Pop();
+                                            controller.stateStack.Push(EnemyController.States.GOTO);
+                                        }
                                     }
                                 }
+                                break;
                             }
-                            break;
                         }
                     }
                 }
