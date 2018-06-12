@@ -10,6 +10,8 @@ public class AIMovment : MonoBehaviour
     NavMeshAgent _nav;
     [SerializeField]
     private float _searchRadius;
+    [SerializeField]
+    LayerMask layers;
 
     private void Awake()
     {
@@ -38,13 +40,22 @@ public class AIMovment : MonoBehaviour
     {
         if (target == null)
         {
-            RaycastHit hit;
+            Collider[] hit = Physics.OverlapSphere(transform.position, _searchRadius, layers, QueryTriggerInteraction.Ignore);
           
-            if (Physics.SphereCast(transform.position, _searchRadius, Vector3.zero, out hit, 0, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+            if (hit.Length > 0)
             {
-                if ((hit.collider.transform.tag != "Ground") && (hit.collider.transform.tag != "Wall"))
+                foreach (Collider item in hit)
                 {
-                    target = hit.collider.transform;
+                    if (item != null)
+                    {
+                        if ((item.tag != "Ground") && (item.tag != "Wall"))
+                        {
+                            target = item.transform;
+                            Debug.Log(target.name);
+                            break;
+                        }
+                    }
+                    
                 }
             }
             else

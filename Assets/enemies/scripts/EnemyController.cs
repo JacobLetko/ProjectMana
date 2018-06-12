@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public AIMovment movment;
-    public Abilities abilities;
-
+    public AIMovment movement;
 
     public enum States
     {
-        IDLE = 0, AVOID = 1, SEARCH = 2, GOTO = 3, ATTACK = 4
+        IDLE = 0, AVOID = 1, SEARCH = 2, GOTO = 3, ATTACK = 4, DEATH = 5
     }
 
     public delegate void AIbehavior();
@@ -18,26 +16,48 @@ public class EnemyController : MonoBehaviour
 
     public Stack<States> stateStack = new Stack<States>(); 
 
-
-    public AIbehavior currentState;
-
-
-
     private void Awake()
     {
-        availibleStates.Add(States.GOTO, new AIbehavior(movment.GoTo));
+        if (GetComponent<AIMovment>() != null)
+        {
+            movement = GetComponent<AIMovment>();
+            availibleStates.Add(States.GOTO, new AIbehavior(movement.GoTo));
+        }
+        else
+        {
+            Debug.LogError("There is no AIMovement script on: " + gameObject.name);
+        }
 
-    }
 
-    // Use this for initialization
-    void Start()
-    {
-       
+
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        availibleStates[stateStack.Peek()]();
+
+        if (stateStack.Count > 0)
+        {
+            if (availibleStates[stateStack.Peek()] != null)
+            {
+                availibleStates[stateStack.Peek()]();
+            }
+            else
+            {
+                Debug.LogError("The state \"" + stateStack + "\" does not have any assigned functions to its delegate.");
+            }
+        }
+        else
+        {
+            Debug.LogError("There are no items inside the 'stateStack' container");
+        }
+
+
+
+
     }
+
 }
