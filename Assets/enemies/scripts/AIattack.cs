@@ -7,11 +7,13 @@ public class AIattack : MonoBehaviour
 
     public EnemyController controller;
     public string[] targetTags;
+    public float attackTimer;
+    public float attackOffset = 2;
     public float damage;
     [SerializeField]
     private float _attackRadius;//While target is within range, attack. Otherwise, loop back to chase. If the player dies, go into9 search mode.
     LayerMask layers;
-    private void Awake()
+    private void Start()
     {
         if (GetComponent<EnemyController>() != null)
         {
@@ -21,25 +23,19 @@ public class AIattack : MonoBehaviour
         {
             Debug.Log("No EnemyController located on: " + gameObject.name);
         }
+        damage = GetComponent<AbilityScore>().abilities.PhysicalDamage;
     }
 
-    // Use this for initialization
-    void Start()
+    public IEnumerator AtkTimer()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        yield return new WaitForSeconds(attackTimer);
     }
 
     public void Attack()
     {
         if (targetTags.Length > 0)
         {
-            Collider[] hit = Physics.OverlapSphere(transform.position, _attackRadius, layers, QueryTriggerInteraction.Ignore);
+            Collider[] hit = Physics.OverlapSphere(transform.position + (transform.forward * attackOffset), _attackRadius, layers, QueryTriggerInteraction.Ignore);
 
             if (hit.Length > 0)
             {
@@ -53,8 +49,14 @@ public class AIattack : MonoBehaviour
                             {
                                 if (targetTags[i] == item.tag)
                                 {
-                                    //deal damage
-                                    //change state
+                                    item.GetComponent<AbilityScore>().abilities.Health -= GetComponent<AIattack>().damage;
+                                    StartCoroutine(GetComponent<AIattack>().AtkTimer());
+
+                                    if (Vector3.Distance(item.transform.position, transform.position) > GetComponent<AIattack>()._attackRadius)
+                                    {
+                                        controller.stateStack.Pop();
+                                        controller.stateStack.Push(EnemyController.States.GOTO);
+                                    }
                                 }
                             }
                             break;
@@ -64,12 +66,19 @@ public class AIattack : MonoBehaviour
             }
             else
             {
-                //change state
+                controller.stateStack.Pop();
+                controller.stateStack.Push(EnemyController.States.GOTO);
             }
         }
         else
         {
             Debug.LogError("No target tags given to: " + gameObject.name);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + (transform.forward * attackOffset), _attackRadius);
     }
 }

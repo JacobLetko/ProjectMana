@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(AIMovment))]
+[RequireComponent(typeof(AIattack))]
 public class EnemyController : MonoBehaviour
 {
     public AIMovment movement;
+    public AIattack attack;
 
     public enum States
     {
-        IDLE = 0, AVOID = 1, SEARCH = 2, GOTO = 3, ATTACK = 4, DEATH = 5
+        AVOID = 0, GOTO = 1, ATTACK = 2, DEATH = 3
     }
 
     public delegate void AIbehavior();
@@ -18,6 +22,8 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        GetComponent<AbilityScore>().abilities.healthMonitor += Death;
+
         if (GetComponent<AIMovment>() != null)
         {
             movement = GetComponent<AIMovment>();
@@ -28,19 +34,38 @@ public class EnemyController : MonoBehaviour
             Debug.LogError("There is no AIMovement script on: " + gameObject.name);
         }
 
+        if (GetComponent<AIattack>() != null)
+        {
+            attack = GetComponent<AIattack>();
+            availibleStates.Add(States.ATTACK, new AIbehavior(attack.Attack));
+        }
+        else
+        {
+            Debug.LogError("There is no AIattack script on: " + gameObject.name);
+        }
 
 
 
 
 
+        stateStack.Push(States.GOTO);
     }
 
+    public void Death()
+    {
+        //run Death animation and death stuff
+        Debug.Log("Running Ai death");
+    }
+
+    public States myState;
     // Update is called once per frame
     void Update()
     {
 
         if (stateStack.Count > 0)
         {
+            myState = stateStack.Peek();
+
             if (availibleStates[stateStack.Peek()] != null)
             {
                 availibleStates[stateStack.Peek()]();

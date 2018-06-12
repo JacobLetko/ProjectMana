@@ -50,9 +50,12 @@ public class AIMovment : MonoBehaviour
                     {
                         if ((item.tag != "Ground") && (item.tag != "Wall"))
                         {
+                            if (item.transform != transform)
+                            {
                             target = item.transform;
                             Debug.Log(target.name);
                             break;
+                            }
                         }
                     }
                     
@@ -66,12 +69,13 @@ public class AIMovment : MonoBehaviour
                 }
             }
         }    
+        
     }
 
     public void GoTo()
     {
-        _nav.destination = target.position;
-        if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
+        _nav.destination = GetComponent<AIMovment>().target.position;
+        if (GetComponent<AIMovment>()._nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
         {
             controller.stateStack.Pop();
             controller.stateStack.Push(EnemyController.States.ATTACK);

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IETimer : MonoBehaviour
+public class AIdeath : MonoBehaviour
 {
+
     // Use this for initialization
     void Start()
     {
