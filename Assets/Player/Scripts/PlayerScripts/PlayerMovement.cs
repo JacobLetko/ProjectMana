@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Trying to jump");
             float jumpY = curve.Evaluate(jumpTime) * jumpHeight;
-            rigidBody.AddForce(new Vector3(0, jumpY, 0));
+            rigidBody.AddForce(new Vector3(0, jumpY, 0), ForceMode.Impulse);
 
             //transform.position = new Vector3(transform.position.x, startY + jumpY, transform.position.z);
             jumpTime += Time.deltaTime / jumpDuration;
