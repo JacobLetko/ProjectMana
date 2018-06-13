@@ -32,12 +32,22 @@ public class AIattack : MonoBehaviour
 
     }
 
-    public IEnumerator AtkTimer()
+    //public IEnumerator AtkTimer()
+    //{
+    //    yield return new WaitForSeconds(attackTimer);
+    //}
+    bool canAttack = true;
+    public void Attack()
     {
-        yield return new WaitForSeconds(attackTimer);
+        if (canAttack)
+        {
+            canAttack = false;
+            StartCoroutine(MyAttack());
+        }
     }
 
-    public void Attack()
+
+    IEnumerator MyAttack()
     {
         if (targetTags.Length > 0)
         {
@@ -57,18 +67,28 @@ public class AIattack : MonoBehaviour
                                 {
                                     if (targetTags[i].ToString() == item.tag)
                                     {
-
+                                        transform.LookAt(item.transform);
                                         item.gameObject.GetComponent<AbilityScore>().abilities.Health -= damage;
 
-                                        StartCoroutine(AtkTimer());
+                                        yield return new WaitForSeconds(attackTimer);
 
-                                        if (Vector3.Distance(item.transform.position, (transform.position * attackOffset)) > _attackRadius)
+                                        if (item != null)
+                                        {
+                                            if (Vector3.Distance(item.transform.position, (transform.position * attackOffset)) > _attackRadius)
+                                            {
+                                                controller.stateStack.Pop();
+                                                controller.stateStack.Push(EnemyController.States.GOTO);
+                                            }
+                                        }
+                                        else
                                         {
                                             controller.stateStack.Pop();
                                             controller.stateStack.Push(EnemyController.States.GOTO);
                                         }
+
                                     }
                                 }
+                                canAttack = true;
                                 break;
                             }
                         }
@@ -85,6 +105,7 @@ public class AIattack : MonoBehaviour
         {
             Debug.LogError("No target tags given to: " + gameObject.name);
         }
+        canAttack = true;
     }
 
     void OnDrawGizmosSelected()

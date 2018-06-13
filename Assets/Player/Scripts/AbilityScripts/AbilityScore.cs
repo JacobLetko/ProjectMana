@@ -8,7 +8,7 @@ public struct Abilities
 {
     //Delegates-----------------------------------------------------------------Each delegate runs its assigned functions on their respective monitored variables change
     public delegate void HealthMonitor();
-    public HealthMonitor healthMonitor;
+    public System.Action healthMonitor;
 
     public delegate void HealthCapMonitor();
     public HealthCapMonitor healthCapMonitor;

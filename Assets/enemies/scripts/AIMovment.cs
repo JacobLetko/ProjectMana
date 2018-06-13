@@ -41,7 +41,7 @@ public class AIMovment : MonoBehaviour
         if (target == null)
         {
             Collider[] hit = Physics.OverlapSphere(transform.position, _searchRadius, layers, QueryTriggerInteraction.Ignore);
-          
+
             if (hit.Length > 0)
             {
                 foreach (Collider item in hit)
@@ -50,15 +50,16 @@ public class AIMovment : MonoBehaviour
                     {
                         if ((item.tag != "Ground") && (item.tag != "Wall"))
                         {
+
                             if (item.transform != transform)
                             {
-                            target = item.transform;
-                            Debug.Log(target.name);
-                            break;
+                                target = item.transform;
+                                Debug.Log(target.name);
+                                break;
                             }
                         }
                     }
-                    
+
                 }
             }
             else
@@ -74,13 +75,16 @@ public class AIMovment : MonoBehaviour
 
     public void GoTo()
     {
-        _nav.destination = target.position;
-        if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
+        if (target != null)
         {
-            if ((_nav.remainingDistance != Mathf.Infinity) && ((_nav.remainingDistance - _nav.stoppingDistance) <= 0.1f))
+            _nav.destination = target.position;
+            if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
             {
-                controller.stateStack.Pop();
-                controller.stateStack.Push(EnemyController.States.ATTACK);
+                if ((_nav.remainingDistance != Mathf.Infinity) && ((_nav.remainingDistance - _nav.stoppingDistance) <= 0.1f))
+                {
+                    controller.stateStack.Pop();
+                    controller.stateStack.Push(EnemyController.States.ATTACK);
+                }
             }
         }
     }
