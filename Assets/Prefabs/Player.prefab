@@ -1380,8 +1380,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570925929309362}
-  m_LocalRotation: {x: 0.18985261, y: -0.02293845, z: 0.004436983, w: 0.9815346}
-  m_LocalPosition: {x: 0, y: 2.6, z: -3.6600037}
+  m_LocalRotation: {x: 0.18979423, y: -0.03298076, z: 0.006378721, w: 0.9812491}
+  m_LocalPosition: {x: 0, y: 2.6, z: -3.6599998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649621267022602}
@@ -1513,7 +1513,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962476835201196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.68, y: 0.5, z: -117.6}
+  m_LocalPosition: {x: -4.4, y: 0.5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4233367421727048}
@@ -1612,9 +1612,9 @@ Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286412556666584}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.017637711, y: -0.9524229, z: -0.029690074}
+  m_GameObject: {fileID: 1851760049849616}
+  m_LocalRotation: {x: 0.18979423, y: -0.03298076, z: 0.006378721, w: 0.9812491}
+  m_LocalPosition: {x: 0, y: 2.6, z: -3.6599998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4850278445190148}
@@ -7507,10 +7507,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2560
   m_IgnoreTag: 
   m_MinimumDistanceFromTarget: 0.1
-  m_AvoidObstacles: 1
+  m_AvoidObstacles: 0
   m_DistanceLimit: 0
   m_CameraRadius: 0.1
   m_Strategy: 0

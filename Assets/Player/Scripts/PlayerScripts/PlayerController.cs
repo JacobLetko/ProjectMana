@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
         rangeAtkTimer = 1 / RateOfFire;
         meleeAtkTimer = 1 / RateOfFire;
         meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
-        Debug.Log(abilityScores.abilities.PhysicalDamage);
         
     }
 

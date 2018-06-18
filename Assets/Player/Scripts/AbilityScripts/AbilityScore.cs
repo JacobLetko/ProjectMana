@@ -8,7 +8,7 @@ public struct Abilities
 {
     //Delegates-----------------------------------------------------------------Each delegate runs its assigned functions on their respective monitored variables change
     public delegate void HealthMonitor();
-    public HealthMonitor healthMonitor;
+    public System.Action healthMonitor;
 
     public delegate void HealthCapMonitor();
     public HealthCapMonitor healthCapMonitor;
@@ -105,7 +105,6 @@ public struct Abilities
             _health = value;
             if (healthMonitor != null)
             {
-                Debug.Log("AAAAAAAAAA");
                 healthMonitor();
             }
 
@@ -493,11 +492,39 @@ public class AbilityScore : MonoBehaviour
 
     public void SetDefaultValues(Abilities abilities)
     {
-        abilities.Cha = 10;
-        abilities.Con = 10;
-        abilities.Dex = 10;
-        abilities.Int = 10;
-        abilities.Str = 10;
-        abilities.Wis = 10;
+        if (abilities.Cha <= 0)
+        {
+            abilities.Cha = 10;
+        }
+        if (abilities.Con <= 0)
+        {
+            abilities.Con = 10;
+        }
+        if (abilities.Dex <= 0)
+        {
+            abilities.Dex = 10;
+        }
+        if (abilities.Int <= 0)
+        {
+            abilities.Int = 10;
+        }
+        if (abilities.Str <= 0)
+        {
+            abilities.Str = 10;
+        }
+        if (abilities.Wis <= 0)
+        {
+            abilities.Wis = 10;
+        }
+    }
+
+    public void SetDefaultValues(Abilities abilities, int cha, int con, int dex,int intelligence, int str, int wis)
+    {
+        abilities.Cha = cha;
+        abilities.Con = con;
+        abilities.Dex = dex;
+        abilities.Int = intelligence;
+        abilities.Str = str;
+        abilities.Wis = wis;
     }
 }

@@ -9,7 +9,7 @@ public class ExperienceGain : MonoBehaviour
     private AbilityScore _myAbilitiyScore;//the local entities stat numbers
     private bool _isDead = false;
     public int experienceReward = 100;
-    private void Awake()
+    private void Start()
     {
         _isDead = false;
         if (GetComponent<AbilityScore>() == null)//checking to see if the object has it's Ability Scores
