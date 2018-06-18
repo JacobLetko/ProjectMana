@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10;
-    Vector3 normalizedDirection;
+    Vector3 direction;
     public Rigidbody rigidBody;
     public AnimationCurve curve;
     public Transform camera;
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             jumpCoolDown += Time.deltaTime;
         }
 
-        transform.Translate(normalizedDirection.normalized * speed * Time.deltaTime);
+        transform.Translate(direction.normalized * speed * Time.deltaTime);
         transform.rotation.Set(0, camera.rotation.x, 0, 0);
 
 
@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 right = camera.TransformDirection(Vector3.right);
 
-        return normalizedDirection.y * forwards + normalizedDirection.x * right;
+        return direction.y * forwards + direction.x * right;
     }
 
     float jumpTime;
@@ -163,12 +163,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnHorzUpdate()
     {
-        normalizedDirection.z = Vert;
+        direction.z = Vert;
     }
 
     void OnVertUpdate()
     {
-        normalizedDirection.x = Horz;
+        direction.x = Horz;
     }
 
 }
