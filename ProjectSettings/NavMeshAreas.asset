@@ -14,7 +14,7 @@ NavMeshProjectSettings:
   - name: traps
     cost: 3
   - name: death
-    cost: 5
+    cost: 3
   - name: 
     cost: 1
   - name: 
