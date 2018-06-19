@@ -138,7 +138,7 @@ MonoBehaviour:
     _experience: 0
     _str: 10
     _dex: 10
-    _con: 100
+    _con: 10
     _int: 10
     _wis: 10
     _cha: 10
