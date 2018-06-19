@@ -22,6 +22,9 @@ public class HUD : MonoBehaviour
 
     public Slider healthBar;
     public Slider manaBar;
+    public GameObject canvas;
+    public GameObject HUDmenu;
+    public GameObject pausemenu;
 
     public GameObject player;
 
@@ -31,6 +34,8 @@ public class HUD : MonoBehaviour
         mana = player.GetComponent<AbilityScore>().abilities.Mana;
         _Health = health;
         _Mana = mana;
+        HUDmenu.GetComponent<RectTransform>().sizeDelta = new Vector2(canvas.GetComponent<RectTransform>().rect.width, canvas.GetComponent<RectTransform>().rect.height);
+        pausemenu.GetComponent<RectTransform>().sizeDelta = new Vector2(canvas.GetComponent<RectTransform>().rect.width, canvas.GetComponent<RectTransform>().rect.height);
     }
 
     private void Update()

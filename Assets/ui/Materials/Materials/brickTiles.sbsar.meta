@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 96b80b47b1560ad469642af102922809
-timeCreated: 1529360929
+timeCreated: 1529438264
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -23,7 +23,7 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: $randomseed
       value:
-        scalar[0]: 0
+        scalar[0]: 6984
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -40,11 +40,11 @@ SubstanceImporter:
       texEnvs:
       - _BumpMap:
           texture: {instanceID: 0}
-          scale: {x: 50, y: 5}
+          scale: {x: 50, y: 50}
           offset: {x: 0, y: 0}
       - _DetailAlbedoMap:
           texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
+          scale: {x: 0, y: 0}
           offset: {x: 0, y: 0}
       - _DetailMask:
           texture: {instanceID: 0}
@@ -72,7 +72,7 @@ SubstanceImporter:
           offset: {x: 0, y: 0}
       - _ParallaxMap:
           texture: {instanceID: 0}
-          scale: {x: 50, y: 5}
+          scale: {x: 50, y: 50}
           offset: {x: 0, y: 0}
       floats:
       - _BumpScale: 1
@@ -80,19 +80,19 @@ SubstanceImporter:
       - _DetailNormalMapScale: 1
       - _DstBlend: 0
       - _GlossMapScale: 1
-      - _Glossiness: 0.5
+      - _Glossiness: 0
       - _GlossyReflections: 1
-      - _Metallic: 0
+      - _Metallic: 0.519
       - _Mode: 0
       - _OcclusionStrength: 1
-      - _Parallax: 0.02
+      - _Parallax: 0.005
       - _SmoothnessTextureChannel: 0
       - _SpecularHighlights: 1
       - _SrcBlend: 1
       - _UVSec: 0
       - _ZWrite: 1
       colors:
-      - _Color: {r: 1, g: 1, b: 1, a: 1}
+      - _Color: {r: 0.71323526, g: 0.3356401, b: 0.3356401, a: 1}
       - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     textureParameters:
     - name: New_Graph_basecolor
