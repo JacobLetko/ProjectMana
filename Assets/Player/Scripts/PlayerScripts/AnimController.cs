@@ -34,7 +34,14 @@ public class AnimController : MonoBehaviour
             _animator.SetBool("isShooting", false);
         }
 
- 
+        if (Input.GetMouseButton(1))
+        {
+            _animator.SetBool("isSlashing", true);
+        }
+        else
+        {
+            _animator.SetBool("isSlashing", false);
+        }
         _animator.SetBool("isJumping", _playerMovement.isJumping);
 
 
