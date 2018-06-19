@@ -38,39 +38,38 @@ public class AIMovment : MonoBehaviour
 
     private void Update()
     {
-        if (target == null)
+
+        Collider[] hit = Physics.OverlapSphere(transform.position, _searchRadius, layers, QueryTriggerInteraction.Ignore);
+
+        if (hit.Length > 0)
         {
-            Collider[] hit = Physics.OverlapSphere(transform.position, _searchRadius, layers, QueryTriggerInteraction.Ignore);
-
-            if (hit.Length > 0)
+            foreach (Collider item in hit)
             {
-                foreach (Collider item in hit)
+                if (item != null)
                 {
-                    if (item != null)
+                    if (item.tag == "Player")
                     {
-                        if (item.tag == "Player")
-                        {
 
-                            if (item.transform != transform)
-                            {
-                                target = item.transform;
-                                Debug.Log(target.name);
-                                break;
-                            }
+                        if (item.transform != transform)
+                        {
+                            target = item.transform;
+                            Debug.Log(target.name);
+                            break;
                         }
                     }
+                }
 
-                }
             }
-            else
+        }
+        else
+        {
+            if (target != null)
             {
-                if (target != null)
-                {
-                    target = null;
-                }
+                target = null;
             }
-        }    
-        
+        }
+
+
     }
 
     public void GoTo()
