@@ -59,7 +59,7 @@ public class AIattack : MonoBehaviour
                 {
                     if (item != null)
                     {
-                        if ((item.tag != "Ground") && (item.tag != "Wall"))
+                        if (item.tag == "Player")
                         {
                             if (item.transform != transform)
                             {
@@ -74,7 +74,7 @@ public class AIattack : MonoBehaviour
 
                                         if (item != null)
                                         {
-                                            if (Vector3.Distance(item.transform.position, (transform.position * attackOffset)) > _attackRadius)
+                                            if (Vector3.Distance(item.transform.position, (transform.position * attackOffset)) > attackOffset)
                                             {
                                                 controller.stateStack.Pop();
                                                 controller.stateStack.Push(EnemyController.States.GOTO);
