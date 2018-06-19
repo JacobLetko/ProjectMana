@@ -3809,7 +3809,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4854837277761076
 Transform:
@@ -8930,7 +8930,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   camera: {fileID: 4605221314703656}
-  jumpHeight: 500
+  jumpHeight: 10
   isJumping: 0
   jumpDuration: 1
 --- !u!114 &114154436365063602
