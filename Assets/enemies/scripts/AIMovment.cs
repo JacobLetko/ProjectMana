@@ -48,7 +48,7 @@ public class AIMovment : MonoBehaviour
                 {
                     if (item != null)
                     {
-                        if ((item.tag != "Ground") && (item.tag != "Wall"))
+                        if (item.tag == "Player")
                         {
 
                             if (item.transform != transform)
