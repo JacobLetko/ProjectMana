@@ -76,14 +76,21 @@ public class AIMovment : MonoBehaviour
     {
         if (target != null)
         {
-            _nav.destination = target.position;
-            if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
+            if (Vector3.Distance(target.position, transform.position) < _searchRadius)
             {
-                if ((_nav.remainingDistance != Mathf.Infinity) && ((_nav.remainingDistance - _nav.stoppingDistance) <= 0.1f))
+                _nav.destination = target.position;
+                if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
                 {
-                    controller.stateStack.Pop();
-                    controller.stateStack.Push(EnemyController.States.ATTACK);
+                    if ((_nav.remainingDistance != Mathf.Infinity) && ((_nav.remainingDistance - _nav.stoppingDistance) <= 0.1f))
+                    {
+                        controller.stateStack.Pop();
+                        controller.stateStack.Push(EnemyController.States.ATTACK);
+                    }
                 }
+            }
+            else
+            {
+                _nav.destination = transform.position;
             }
         }
     }
