@@ -70,6 +70,12 @@ public class AIattack : MonoBehaviour
                                         transform.LookAt(item.transform);
                                         item.gameObject.GetComponent<AbilityScore>().abilities.Health -= damage;
 
+                                        if (item.gameObject.GetComponent<AbilityScore>().abilities.Health <= 0)
+                                        {
+                                            controller.stateStack.Pop();
+                                            controller.stateStack.Push(EnemyController.States.GOTO);
+                                        }
+
                                         yield return new WaitForSeconds(attackTimer);
 
                                         if (item != null)
@@ -94,6 +100,9 @@ public class AIattack : MonoBehaviour
                         }
                     }
                 }
+
+                controller.stateStack.Pop();
+                controller.stateStack.Push(EnemyController.States.GOTO);
             }
             else
             {
