@@ -425,13 +425,18 @@ public class AbilityScore : MonoBehaviour
 {
     [Tooltip("Determines all underlying stats for the player. Functions almost exactly like D&D ability scores.")]
     public Abilities abilities = new Abilities();
-
+    [SerializeField]
+    [Tooltip("Sets the floor value for how many points a state can gain on a character levelup")]
+    private float _statBoostFloor;
+    [SerializeField]
+    [Tooltip("Sets the floor value for how many points a state can gain on a character levelup")]
+    private float _statBoostCeiling;
 
 
 
     public delegate void TouchAbility();
     public TouchAbility levelMonitor;
-    private float _level;
+    private float _level = 1;
 
     public float Level
     {
@@ -444,6 +449,7 @@ public class AbilityScore : MonoBehaviour
         {
             _level = value;
             levelMonitor();
+            SetStatusScores(abilities);
         }
     }
 
@@ -473,6 +479,36 @@ public class AbilityScore : MonoBehaviour
     {
         SetDefaultValues(abilities);
         abilities = SetStatusScores(abilities);
+        abilities.healthMonitor += DeathPenalty;
+        abilities.expMonitor += LevelUp;
+    }
+
+    void DeathPenalty()
+    {
+        if (abilities.Health <= 0)
+        {
+            abilities.Experience = 0;
+        }
+    }
+    
+    void LevelUp()
+    {
+        if (abilities.Experience / 100 > Level)
+        {
+                
+                abilities.Cha += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+
+                abilities.Con += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+
+                abilities.Dex += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+
+                abilities.Int += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+
+                abilities.Str += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+
+                abilities.Wis += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+
+        }
     }
 
 

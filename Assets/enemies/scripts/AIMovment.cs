@@ -38,53 +38,59 @@ public class AIMovment : MonoBehaviour
 
     private void Update()
     {
-        if (target == null)
+
+        Collider[] hit = Physics.OverlapSphere(transform.position, _searchRadius, layers, QueryTriggerInteraction.Ignore);
+
+        if (hit.Length > 0)
         {
-            Collider[] hit = Physics.OverlapSphere(transform.position, _searchRadius, layers, QueryTriggerInteraction.Ignore);
-
-            if (hit.Length > 0)
+            foreach (Collider item in hit)
             {
-                foreach (Collider item in hit)
+                if (item != null)
                 {
-                    if (item != null)
+                    if (item.tag == "Player")
                     {
-                        if ((item.tag != "Ground") && (item.tag != "Wall"))
-                        {
 
-                            if (item.transform != transform)
-                            {
-                                target = item.transform;
-                                Debug.Log(target.name);
-                                break;
-                            }
+                        if (item.transform != transform)
+                        {
+                            target = item.transform;
+                            Debug.Log(target.name);
+                            break;
                         }
                     }
+                }
 
-                }
             }
-            else
+        }
+        else
+        {
+            if (target != null)
             {
-                if (target != null)
-                {
-                    target = null;
-                }
+                target = null;
             }
-        }    
-        
+        }
+
+
     }
 
     public void GoTo()
     {
         if (target != null)
         {
-            _nav.destination = target.position;
-            if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
+            if (Vector3.Distance(target.position, transform.position) < _searchRadius)
             {
-                if ((_nav.remainingDistance != Mathf.Infinity) && ((_nav.remainingDistance - _nav.stoppingDistance) <= 0.1f))
+                _nav.destination = target.position;
+                if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
                 {
-                    controller.stateStack.Pop();
-                    controller.stateStack.Push(EnemyController.States.ATTACK);
+                    if ((_nav.remainingDistance != Mathf.Infinity) && ((_nav.remainingDistance - _nav.stoppingDistance) <= 0.1f))
+                    {
+                        controller.stateStack.Pop();
+                        controller.stateStack.Push(EnemyController.States.ATTACK);
+                    }
                 }
+            }
+            else
+            {
+                _nav.destination = transform.position;
             }
         }
     }

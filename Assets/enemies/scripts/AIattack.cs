@@ -59,7 +59,7 @@ public class AIattack : MonoBehaviour
                 {
                     if (item != null)
                     {
-                        if ((item.tag != "Ground") && (item.tag != "Wall"))
+                        if (item.tag == "Player")
                         {
                             if (item.transform != transform)
                             {
@@ -70,11 +70,17 @@ public class AIattack : MonoBehaviour
                                         transform.LookAt(item.transform);
                                         item.gameObject.GetComponent<AbilityScore>().abilities.Health -= damage;
 
+                                        if (item.gameObject.GetComponent<AbilityScore>().abilities.Health <= 0)
+                                        {
+                                            controller.stateStack.Pop();
+                                            controller.stateStack.Push(EnemyController.States.GOTO);
+                                        }
+
                                         yield return new WaitForSeconds(attackTimer);
 
                                         if (item != null)
                                         {
-                                            if (Vector3.Distance(item.transform.position, (transform.position * attackOffset)) > _attackRadius)
+                                            if (Vector3.Distance(item.transform.position, (transform.position * attackOffset)) > attackOffset)
                                             {
                                                 controller.stateStack.Pop();
                                                 controller.stateStack.Push(EnemyController.States.GOTO);
@@ -94,6 +100,9 @@ public class AIattack : MonoBehaviour
                         }
                     }
                 }
+
+                controller.stateStack.Pop();
+                controller.stateStack.Push(EnemyController.States.GOTO);
             }
             else
             {
