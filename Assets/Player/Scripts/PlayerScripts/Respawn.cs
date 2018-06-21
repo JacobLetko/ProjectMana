@@ -1,25 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Respawn : MonoBehaviour
 {
     public Vector3 respawnPos;
     public GameObject player;
+    public Image deathbox;
+    Color imgChange;
+
+
 
     private void Start()
     {
         respawnPos = player.transform.position;
+        imgChange = deathbox.color;
     }
 
     private void Update()
     {
-        if(player.GetComponent<AbilityScore>().abilities.Health <= 0)
+        bool dead = false;
+
+        if(dead && imgChange.a < 1)
         {
-            Debug.Log("dead");
+            imgChange.a += .07f;
+        }
+
+        if(imgChange.a > 1 && dead)
+        {
+            dead = false;
             player.transform.position = respawnPos;
             player.GetComponent<AbilityScore>().SetDefaultValues(player.GetComponent<AbilityScore>().abilities);
             player.GetComponent<AbilityScore>().abilities = player.GetComponent<AbilityScore>().SetStatusScores(player.GetComponent<AbilityScore>().abilities);
+        }
+
+        if(!dead && imgChange.a > 0)
+        {
+            imgChange.a -= .07f;
+        }
+
+        if (player.GetComponent<AbilityScore>().abilities.Health <= 0)
+        {
+            dead = true;
         }
     }
 }
