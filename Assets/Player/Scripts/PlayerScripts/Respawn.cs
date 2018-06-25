@@ -9,7 +9,7 @@ public class Respawn : MonoBehaviour
     public GameObject player;
     public Image deathbox;
     Color imgChange;
-
+    bool dead = false;
 
 
     private void Start()
@@ -20,29 +20,31 @@ public class Respawn : MonoBehaviour
 
     private void Update()
     {
-        bool dead = false;
+        if (player.GetComponent<AbilityScore>().abilities.Health <= 0)
+        {
+            dead = true;
+        }
 
-        if(dead && imgChange.a < 1)
+        if (dead && imgChange.a < 1)
         {
             imgChange.a += .07f;
+            
         }
 
         if(imgChange.a > 1 && dead)
         {
             dead = false;
             player.transform.position = respawnPos;
+            player.transform.rotation = Quaternion.Euler(0,0,0);
             player.GetComponent<AbilityScore>().SetDefaultValues(player.GetComponent<AbilityScore>().abilities);
             player.GetComponent<AbilityScore>().abilities = player.GetComponent<AbilityScore>().SetStatusScores(player.GetComponent<AbilityScore>().abilities);
         }
 
         if(!dead && imgChange.a > 0)
         {
-            imgChange.a -= .07f;
+            imgChange.a -= .001f;
         }
 
-        if (player.GetComponent<AbilityScore>().abilities.Health <= 0)
-        {
-            dead = true;
-        }
+        deathbox.color = imgChange;
     }
 }
