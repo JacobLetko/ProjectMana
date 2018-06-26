@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 10;
+    float speed = 10;
+    [SerializeField]
+    bool _isAttacking = false;
     Vector3 direction;
-    public Rigidbody rigidBody;
+    public Rigidbody myRigidBody;
+    [SerializeField]
+    private NavMeshAgent _meshAgent;
     public AnimationCurve curve;
     public Transform camera;
-    //float jumpOffset = 0;
     public float jumpHeight = 1;
     //public float jumpEvaluationScale = 1;
 
@@ -55,6 +58,40 @@ public class PlayerMovement : MonoBehaviour
             OnVertUpdate();
         }
     }
+
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+
+        set
+        {
+            speed = value;
+            SetAgentSpeed();
+        }
+    }
+
+    public bool IsAttacking
+    {
+        get
+        {
+            return _isAttacking;
+        }
+
+        set
+        {
+            _isAttacking = value;
+        }
+    }
+
+    void SetAgentSpeed()
+    {
+        _meshAgent.speed = speed;
+        savedSpeed = speed;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -62,7 +99,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogError("No Curve given to PlayerMovement!");
         }
+        SetAgentSpeed();
+        savedSpeed = speed;
     }
+
+    float savedSpeed;//= speed;
 
     // Update is called once per frame
     void Update()
@@ -97,68 +138,85 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Translate position---------------------------------------------------
+
+
+
+
+        Vector3 camForward = camera.transform.forward;
+        camForward.y = 0;
+        Vector3 camRight = camera.transform.right;
+        Vector3 targetDirection = (camRight * Horz) + (camForward * Vert);
+
+
         if (isJumping)
         {
             Debug.Log("Trying to jump");
-            float jumpY = curve.Evaluate(jumpTime) * jumpHeight;
-            rigidBody.AddForce(new Vector3(0, jumpY, 0), ForceMode.Impulse);
 
-            //transform.position = new Vector3(transform.position.x, startY + jumpY, transform.position.z);
+            float jumpY = curve.Evaluate(jumpTime) * jumpHeight;
+
+            _meshAgent.baseOffset = (jumpY + 0.5f);
+
+
             jumpTime += Time.deltaTime / jumpDuration;
             if (jumpTime >= 1)
             {
                 isJumping = false;
 
-                //transform.position =new Vector3(transform.position.x, startY, transform.position.z);
+
             }
         }
         else
         {
+
+            _meshAgent.baseOffset = 0.5f;
             jumpCoolDown += Time.deltaTime;
         }
 
-        transform.Translate(direction.normalized * speed * Time.deltaTime);
-        transform.rotation.Set(0, camera.rotation.x, 0, 0);
-
-
-
+        if (_isAttacking)
+        {
+            _meshAgent.updatePosition = false;
+            speed = 0;
+            Vert = 1;
+            Horz = 0;
+        }
+        else
+        {
+            speed = savedSpeed;
+            _meshAgent.updatePosition = true;
+        }
+        _meshAgent.destination = targetDirection + transform.position;
     }
 
-    private Vector3 FindDirection()
-    {
-        Vector3 forwards = camera.TransformDirection(Vector3.forward);
-        forwards.y = 0;
 
-        Vector3 right = camera.TransformDirection(Vector3.right);
 
-        return direction.y * forwards + direction.x * right;
-    }
+
 
     float jumpTime;
     public float jumpDuration = 1;
     float startY;
-    RaycastHit detectGround;
+
     bool grounded = true;
     float jumpCoolDown;
 
 
-
+    RaycastHit detectGround;
     void OnJumpUpdate()
     {
         if (isJumping == false)
         {
-            if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out detectGround, 0.5f))
+            if (_meshAgent.baseOffset == 0.5f)
             {
-                if (detectGround.collider.tag == "Ground")
+                if (Physics.Raycast(myRigidBody.centerOfMass, new Vector3(0, -1, 0), out detectGround, 1f, LayerMask.GetMask("Ground")))
                 {
-                    isJumping = true;
-                    jumpTime = 0;
+                    Debug.Log(detectGround.collider.tag);
+                    if (detectGround.collider.tag == "Ground")
+                    {
+                        isJumping = true;
+                        jumpTime = 0;
+                    }
                 }
             }
-
         }
-
-        //startY = transform.position.y;
     }
 
     void OnHorzUpdate()
@@ -170,5 +228,6 @@ public class PlayerMovement : MonoBehaviour
     {
         direction.x = Horz;
     }
+
 
 }
