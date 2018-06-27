@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114182411626012622}
   - component: {fileID: 114376634558299466}
   - component: {fileID: 114039934352338098}
+  - component: {fileID: 114663968413249576}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -2752,6 +2753,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _reciever: {fileID: 0}
   experienceReward: 100
+--- !u!114 &114663968413249576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002978109468596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6de7768c91b894990f136bbb2fa05f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reciever: {fileID: 0}
+  experienceReward: 100
 --- !u!114 &114761389977761658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2779,9 +2793,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 3.8462238
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.022924423, z: 0}
 --- !u!137 &137528431852172890
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
