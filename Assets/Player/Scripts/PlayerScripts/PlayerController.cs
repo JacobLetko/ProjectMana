@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(AbilityScore))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerMovement _playerMovement;
     public SeekerSpawner rangedAttack;
     public SwordScript meleeAttack;
     public AbilityScore abilityScores;
@@ -15,7 +17,6 @@ public class PlayerController : MonoBehaviour
     
 
     public ObjectPool pool;
-
 
     float rangeAtkTimer = 0;
     float meleeAtkTimer = 0;
@@ -27,16 +28,27 @@ public class PlayerController : MonoBehaviour
         rangeAtkTimer = 1 / RateOfFire;
         meleeAtkTimer = 1 / RateOfFire;
         meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
-        
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Update()
     {
         if (!_paused)
         {
+
+            if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+            {
+                _playerMovement.IsAttacking = true;
+            }
+            else
+            {
+                _playerMovement.IsAttacking = false;
+            }
+            
             rangeAtkTimer += Time.deltaTime;
             if (Input.GetMouseButton(0))
             {
+
                 if (rangeAtkTimer >= 1 / RateOfFire)
                 {
                     for (int i = 0; i < 3; i++)
@@ -49,9 +61,12 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+
+
             meleeAtkTimer += Time.deltaTime;
             if (Input.GetMouseButton(1))
             {
+
                 if (meleeAtkTimer >= 1 / RateOfFire)
                 {
                     meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
@@ -60,6 +75,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Melee");
                 }
             }
+
         }
     }
 

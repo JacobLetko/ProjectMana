@@ -48,6 +48,7 @@ public class CharacterMovement : MonoBehaviour
         
         // Update target direction relative to the camera view (or not if the Keep Direction option is checked)
         UpdateTargetDirection();
+
         if (input != Vector2.zero && targetDirection.magnitude > 0.1f)
         {
             Vector3 lookDirection = targetDirection.normalized;
