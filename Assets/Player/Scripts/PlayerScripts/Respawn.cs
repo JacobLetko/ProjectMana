@@ -42,7 +42,7 @@ public class Respawn : MonoBehaviour
 
         if(!dead && imgChange.a > 0)
         {
-            imgChange.a -= .001f;
+            imgChange.a -= .3f * Time.deltaTime;
         }
 
         deathbox.color = imgChange;

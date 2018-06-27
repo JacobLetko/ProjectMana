@@ -11,10 +11,15 @@ public class DOT : MonoBehaviour
     public float timer;
 
     public List<GameObject> stuff;
+    public List<GameObject> spikes;
 
     private void Start()
     {
         stuff = new List<GameObject>();
+        foreach(GameObject s in spikes)
+        {
+            s.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,7 +42,16 @@ public class DOT : MonoBehaviour
         {
             foreach (GameObject g in stuff)
             {
+                foreach (GameObject s in spikes)
+                {
+                    s.SetActive(true);
+                }
                 g.GetComponent<AbilityScore>().abilities.Health -= damage;
+            }
+            yield return new WaitForSeconds(1);
+            foreach (GameObject s in spikes)
+            {
+                s.SetActive(false);
             }
             yield return new WaitForSeconds(timer);
         }
