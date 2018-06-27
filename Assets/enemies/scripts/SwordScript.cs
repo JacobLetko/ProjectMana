@@ -30,19 +30,15 @@ public class SwordScript : MonoBehaviour
     {
         GameObject hull;
         for (int i = 0; i < _stuff.Count; i++)
-        {
-
+        {          
             if (_stuff[i] != null)
             {
                 hull = _stuff[i];
                 if (hull.GetComponent<AbilityScore>() != null)
                 {
-
                     hull.GetComponent<AbilityScore>().abilities.Health -= damage;
                 }
-
             }
         }
-
     }
 }

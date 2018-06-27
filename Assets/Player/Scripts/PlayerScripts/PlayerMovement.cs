@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
     void SetAgentSpeed()
     {
         _meshAgent.speed = speed;
-        savedSpeed = speed;
+
     }
 
     // Use this for initialization
@@ -100,10 +100,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("No Curve given to PlayerMovement!");
         }
         SetAgentSpeed();
-        savedSpeed = speed;
+
     }
 
-    float savedSpeed;//= speed;
+
 
     // Update is called once per frame
     void Update()
@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
                 Horz = Input.GetAxisRaw("Horizontal");
             }
 
-            if (Input.GetAxisRaw("Jump") > 0)
+            if (Input.GetAxisRaw("Jump") > 0 && !_isAttacking)
             {
                 Jump = 1;
             }
@@ -174,28 +174,44 @@ public class PlayerMovement : MonoBehaviour
 
         if (_isAttacking)
         {
-            _meshAgent.updatePosition = false;
-            speed = 0;
+            if (_meshAgent.enabled)
+            {
+                _meshAgent.enabled = false;
+            }
+
+
+
             Vert = 1;
             Horz = 0;
+
+            camForward = camera.transform.forward;
+            camForward.y = 0;
+            camRight = camera.transform.right;
+            targetDirection = (camRight * Horz) + (camForward * Vert);
+
+            transform.LookAt(new Vector3((targetDirection + transform.position).x, transform.position.y, (targetDirection + transform.position).z),Vector3.up);
+
         }
         else
         {
-            speed = savedSpeed;
-            _meshAgent.updatePosition = true;
+            if (!_meshAgent.enabled)
+            {
+                _meshAgent.enabled = true;
+            }
+
         }
         _meshAgent.destination = targetDirection + transform.position;
+        
     }
 
 
 
 
 
-    float jumpTime;
+    public float jumpTime;
     public float jumpDuration = 1;
     float startY;
 
-    bool grounded = true;
     float jumpCoolDown;
 
 

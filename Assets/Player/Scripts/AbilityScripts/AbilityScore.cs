@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public struct Abilities
 {
+    #region Delegates
     //Delegates-----------------------------------------------------------------Each delegate runs its assigned functions on their respective monitored variables change
     public delegate void HealthMonitor();
     public System.Action healthMonitor;
@@ -33,13 +34,11 @@ public struct Abilities
 
     public delegate void ChaMonitor();
     public ConMonitor chaMonitor;
-
+    #endregion
 
     //What shows up on the UI---------------------------------------------------
 
-
-
-
+    
     private float _magicDamage;
     private float _physicalDamage;
     private float _armorClass;
