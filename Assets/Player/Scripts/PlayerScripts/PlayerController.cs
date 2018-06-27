@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(AbilityScore))]
 public class PlayerController : MonoBehaviour
 {
+    public Animator playerAnimator;
     [SerializeField]
     private PlayerMovement _playerMovement;
     public SeekerSpawner rangedAttack;
@@ -35,47 +36,46 @@ public class PlayerController : MonoBehaviour
     {
         if (!_paused)
         {
-
-            if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+            if (!_playerMovement.isJumping)
             {
-                _playerMovement.IsAttacking = true;
-            }
-            else
-            {
-                _playerMovement.IsAttacking = false;
-            }
-            
-            rangeAtkTimer += Time.deltaTime;
-            if (Input.GetMouseButton(0))
-            {
-
-                if (rangeAtkTimer >= 1 / RateOfFire)
+                if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
                 {
-                    for (int i = 0; i < 3; i++)
+                    _playerMovement.IsAttacking = true;
+                }
+                else
+                {
+                    _playerMovement.IsAttacking = false;
+                }
+
+                rangeAtkTimer += Time.deltaTime;
+                if (Input.GetMouseButton(0))
+                {
+
+                    if (rangeAtkTimer >= 1 / RateOfFire)
                     {
-                        rangedAttack.FireGun(abilityScores.abilities.MagicDamage);
-                        rangeAtkTimer = 0;
-                        Debug.Log("ranged");
+                        for (int i = 0; i < 3; i++)
+                        {
+                            rangedAttack.FireGun(abilityScores.abilities.MagicDamage);
+                            rangeAtkTimer = 0;
+                            Debug.Log("ranged");
+                        }
                     }
-
                 }
-            }
 
 
 
-            meleeAtkTimer += Time.deltaTime;
-            if (Input.GetMouseButton(1))
-            {
-
-                if (meleeAtkTimer >= 1 / RateOfFire)
+                meleeAtkTimer += Time.deltaTime;
+                if (Input.GetMouseButton(1))
                 {
-                    meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
-                    meleeAttack.attack();
-                    rangeAtkTimer = 0;
-                    Debug.Log("Melee");
+                    if (meleeAtkTimer >= 1 / RateOfFire)
+                    {
+                        meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
+                        meleeAttack.attack();
+                        rangeAtkTimer = 0;
+                        Debug.Log("Melee");
+                    }
                 }
             }
-
         }
     }
 
