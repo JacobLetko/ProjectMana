@@ -25,24 +25,31 @@ public class AnimController : MonoBehaviour
             _animator.SetBool("isRunning", false);
         }
 
-        if (Input.GetMouseButton(0))
+        _animator.SetBool("isJumping", _playerMovement.isJumping);
+
+        if (!_playerMovement.isJumping)
         {
-            _animator.SetBool("isShooting", true);
-        }
-        else
-        {
-            _animator.SetBool("isShooting", false);
+            if (Input.GetMouseButton(0))
+            {
+                _animator.SetBool("isShooting", true);
+            }
+            else
+            {
+                _animator.SetBool("isShooting", false);
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                _animator.SetBool("isSlashing", true);
+            }
+            else
+            {
+                _animator.SetBool("isSlashing", false);
+            }
         }
 
-        if (Input.GetMouseButton(1))
-        {
-            _animator.SetBool("isSlashing", true);
-        }
-        else
-        {
-            _animator.SetBool("isSlashing", false);
-        }
-        _animator.SetBool("isJumping", _playerMovement.isJumping);
+
+
 
 
 
