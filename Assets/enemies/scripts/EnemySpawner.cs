@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy;
     public List<GameObject> enemies;
     public GameObject player;
-    public int AreaLength;
+    public int AreaLength = 10;
 
 
     private void Start()
@@ -24,12 +24,12 @@ public class EnemySpawner : MonoBehaviour
         Ray target = new Ray(transform.position, player.GetComponent<Transform>().position);
         Debug.DrawRay(transform.position, player.GetComponent<Transform>().position);
 
-        //if (Physics.Raycast(target, out hit, AreaLength))
-        //{
-        //    if (hit.collider.tag == "Player")
-        //    {
-
-        //    }
-        //}
+        if (Physics.Raycast(target, out hit, AreaLength))
+        {
+            if (hit.collider.tag == "Player")
+            {
+                Debug.Log("i see you");
+            }
+        }
     }
 }
