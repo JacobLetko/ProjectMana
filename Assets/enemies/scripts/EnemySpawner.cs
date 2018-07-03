@@ -35,9 +35,10 @@ public class EnemySpawner : MonoBehaviour
     { 
         if (enemies.Count < 10)
         {
-            yield return new WaitForSeconds(5);
+            
             enemies.Add(Instantiate(enemy));
-            enemies[enemies.Count - 1].transform.position = transform.position + Vector3.up;
+            enemies[enemies.Count - 1].transform.position = transform.position + Vector3.up + (new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));
         }
+        yield return new WaitForSeconds(5);
     }
 }
