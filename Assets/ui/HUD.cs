@@ -20,6 +20,22 @@ public class HUD : MonoBehaviour
     }
     private float _Mana;
 
+    [Header("lighting")]
+    public float max;
+    public float current;
+
+    public Light Red;
+    public Slider RedBar;
+    public Light Green;
+    public Slider GreenBar;
+    public Light Blue;
+    public Slider BlueBar;
+    public Light White;
+    public Slider WhiteBar;
+    public Light Black;
+    public Slider BlackBar;
+
+    [Header("objects")]
     public Slider healthBar;
     public Slider manaBar;
     public GameObject canvas;
@@ -42,7 +58,11 @@ public class HUD : MonoBehaviour
     {
         healthBar.value = calcHealth();
         //manaBar.value = calcMana();
-
+        calcBright(Red, RedBar);
+        calcBright(Green, GreenBar);
+        calcBright(Blue, BlueBar);
+        calcBright(White, WhiteBar);
+        calcBright(Black, BlackBar);
     }
 
     float calcHealth()
@@ -55,5 +75,15 @@ public class HUD : MonoBehaviour
     {
         mana = player.GetComponent<AbilityScore>().abilities.Mana;
         return player.GetComponent<AbilityScore>().abilities.Mana /_Mana;
+    }
+    
+    void calcBright(Light light, Slider bar)
+    {
+        /*
+         * need to get current bar value and make it current intensity value of light
+         * bar.value * max = current ?
+        */
+        current = max * bar.value;
+        light.intensity = current;
     }
 }
