@@ -2568,7 +2568,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1664526448556686}
-  m_LocalRotation: {x: -0.013511248, y: 0.000010757442, z: -0.0000046161863, w: 0.9999088}
+  m_LocalRotation: {x: -0.013511188, y: 0.000010757435, z: -0.0000046161895, w: 0.9999088}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children:
@@ -2665,7 +2665,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1966820475732296}
-  m_LocalRotation: {x: 0.22644746, y: 0.000009338114, z: -0.0000070590136, w: 0.97402346}
+  m_LocalRotation: {x: 0.22644709, y: 0.000009338089, z: -0.0000070590118, w: 0.9740235}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children:
@@ -2706,7 +2706,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570925929309362}
   m_LocalRotation: {x: 0.13531359, y: -0.000011239979, z: 0.0000032702956, w: 0.9908028}
-  m_LocalPosition: {x: 0, y: 3.8400002, z: -4.01}
+  m_LocalPosition: {x: 0, y: 3.8399994, z: -4.010002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649621267022602}
@@ -3129,7 +3129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962476835201196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.4, y: 0.5, z: 20.4}
+  m_LocalPosition: {x: -4.5051265, y: 0.72, z: -119.01866}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4233367421727048}
@@ -3342,8 +3342,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851760049849616}
-  m_LocalRotation: {x: 0.3561634, y: -0, z: -0, w: 0.93442374}
-  m_LocalPosition: {x: 0, y: 3.8400002, z: -4.01}
+  m_LocalRotation: {x: 0.3561633, y: -0, z: -0, w: 0.93442374}
+  m_LocalPosition: {x: 0, y: 3.8399994, z: -4.010002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4500121333337304}
@@ -10438,6 +10438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnPos: {x: 0, y: 0, z: 0}
   player: {fileID: 1962476835201196}
+  deathbox: {fileID: 0}
 --- !u!114 &114984877308676456
 MonoBehaviour:
   m_ObjectHideFlags: 1
