@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoulDrainObjBehaviour : MonoBehaviour {
+public class SoulDrainObjBehaviour : MonoBehaviour
+{
+    private AbilityScore abilityScore;
+    // Use this for initialization
+    void Start()
+    {
+        abilityScore = GetComponent<AbilityScore>();
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void Stun()
+    {
+        if (abilityScore.abilities.Health <= Mathf.Round(abilityScore.abilities.HealthCap / 3))
+        {
+
+        }
+    }
 }

@@ -189,19 +189,19 @@ public struct Abilities
     //Ability scores-----------------------------------------------------
 
     [SerializeField]
-    private float _str;
+    private int _str;
     [SerializeField]
-    private float _dex;
+    private int _dex;
     [SerializeField]
-    private float _con;
+    private int _con;
     [SerializeField]
-    private float _int;
+    private int _int;
     [SerializeField]
-    private float _wis;
+    private int _wis;
     [SerializeField]
-    private float _cha;
+    private int _cha;
 
-    public float Str
+    public int Str
     {
         get
         {
@@ -210,7 +210,16 @@ public struct Abilities
 
         set
         {
-            _str = value;
+            if (value > 20)
+            {
+                _str = 20;
+            }
+            else
+            {
+                _str = value;
+            }
+
+
             if (strMonitor != null)
             {
                 strMonitor();
@@ -221,7 +230,7 @@ public struct Abilities
     }
 
 
-    public float Dex
+    public int Dex
     {
         get
         {
@@ -230,7 +239,16 @@ public struct Abilities
 
         set
         {
-            _dex = value;
+
+            if (value > 20)
+            {
+                _dex = 20;
+            }
+            else
+            {
+                _dex = value;
+            }
+
             if (dexMonitor != null)
             {
                 dexMonitor();
@@ -240,7 +258,7 @@ public struct Abilities
     }
 
 
-    public float Con
+    public int Con
     {
         get
         {
@@ -249,7 +267,14 @@ public struct Abilities
 
         set
         {
-            _con = value;
+            if (value > 20)
+            {
+                _dex = 20;
+            }
+            else
+            {
+                _dex = value;
+            }
             if (conMonitor != null)
             {
                 conMonitor();
@@ -259,7 +284,7 @@ public struct Abilities
     }
 
 
-    public float Int
+    public int Int
     {
         get
         {
@@ -268,7 +293,14 @@ public struct Abilities
 
         set
         {
-            _int = value;
+            if (value > 20)
+            {
+                _int = 20;
+            }
+            else
+            {
+                _int = value;
+            }
             if (intMonitor != null)
             {
                 intMonitor();
@@ -278,7 +310,7 @@ public struct Abilities
     }
 
 
-    public float Wis
+    public int Wis
     {
         get
         {
@@ -287,7 +319,14 @@ public struct Abilities
 
         set
         {
-            _wis = value;
+            if (value > 20)
+            {
+                _wis = 20;
+            }
+            else
+            {
+                _wis = value;
+            }
             if (wisMonitor != null)
             {
                 wisMonitor();
@@ -297,7 +336,7 @@ public struct Abilities
     }
 
 
-    public float Cha
+    public int Cha
     {
         get
         {
@@ -306,7 +345,14 @@ public struct Abilities
 
         set
         {
-            _cha = value;
+            if (value > 20)
+            {
+                _cha = 20;
+            }
+            else
+            {
+                _cha = value;
+            }
             if (chaMonitor != null)
             {
                 chaMonitor();
@@ -430,7 +476,9 @@ public class AbilityScore : MonoBehaviour
     [SerializeField]
     [Tooltip("Sets the floor value for how many points a state can gain on a character levelup")]
     private float _statBoostCeiling;
-
+    [SerializeField]
+    [Tooltip("Responsible for setting when the layer levels up in accordance to if 'abilities.Experience / LevelUpThreshold > Level'")]
+    private int levelUpThreshold = 100;
 
 
     public delegate void TouchAbility();
@@ -492,20 +540,20 @@ public class AbilityScore : MonoBehaviour
     
     void LevelUp()
     {
-        if (abilities.Experience / 100 > Level)
+        if (abilities.Experience / levelUpThreshold > Level)
         {
                 
-                abilities.Cha += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                abilities.Cha += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
 
-                abilities.Con += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                abilities.Con += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
 
-                abilities.Dex += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                abilities.Dex += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
 
-                abilities.Int += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                abilities.Int += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
 
-                abilities.Str += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                abilities.Str += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
 
-                abilities.Wis += UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                abilities.Wis += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
 
         }
     }
