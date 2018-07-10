@@ -10,6 +10,9 @@ public class EnemyController : MonoBehaviour
     public AIMovment movement;
     public AIattack attack;
     private AbilityScore _abilityScore;
+    private SoulDrainObjManager _soulDrainObjManager;
+
+    bool _runUpdate = true;
 
     public enum States
     {
@@ -23,6 +26,16 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        if (_soulDrainObjManager == null)
+        {
+            _soulDrainObjManager = GetComponent<SoulDrainObjManager>();
+            if (_soulDrainObjManager == null)
+            {
+                Debug.LogError("GameObject '" + gameObject.name + "' has not been given a 'SoulDrainManager' componenet.");
+            }
+        }
+
+
         _abilityScore = GetComponent<AbilityScore>();
         _abilityScore.abilities.healthMonitor += Death;
         _abilityScore.abilities.healthMonitor += Stunned;
@@ -68,7 +81,7 @@ public class EnemyController : MonoBehaviour
         }
 
         stateStack.Push(States.GOTO);
-
+        _runUpdate = true;
     }
 
     public void Death()
@@ -87,7 +100,7 @@ public class EnemyController : MonoBehaviour
     public void OnDeath()
     {
         //GetComponent<CapsuleCollider>().enabled = false;
-        stateStack.Pop();
+        _runUpdate = false;
     }
 
     public void Stunned()
@@ -103,6 +116,7 @@ public class EnemyController : MonoBehaviour
     public void WaitAbit()
     {
         StartCoroutine(IWait());
+
     }
 
     IEnumerator IWait()
@@ -111,7 +125,11 @@ public class EnemyController : MonoBehaviour
 
         float totalTime = 0;
         while (totalTime <= duration)
-        { 
+        {
+            if (_abilityScore.abilities.Health <= 0)
+            {
+                yield break;
+            }
             totalTime += Time.deltaTime;
             yield return null;
         }
@@ -120,32 +138,36 @@ public class EnemyController : MonoBehaviour
 
         stateStack.Pop();
         stateStack.Push(EnemyController.States.GOTO);
+
     }
 
     public States myState;
     // Update is called once per frame
     void Update()
     {
-
-        if (stateStack.Count > 0)
+        if (_runUpdate)
         {
-            myState = stateStack.Peek();
-
-            if (availibleStates[stateStack.Peek()] != null)
+            if (stateStack.Count > 0)
             {
-                availibleStates[stateStack.Peek()]();
+                myState = stateStack.Peek();
+
+                if (availibleStates[stateStack.Peek()] != null)
+                {
+                    availibleStates[stateStack.Peek()]();
+                }
+                else
+                {
+                    Debug.LogError("The state \"" + stateStack + "\" does not have any assigned functions to its delegate.");
+                }
             }
             else
             {
-                Debug.LogError("The state \"" + stateStack + "\" does not have any assigned functions to its delegate.");
+                Debug.LogError("There are no items inside the 'stateStack' container");
             }
         }
         else
         {
-            if (_abilityScore.abilities.Health > 0)
-            {
-                Debug.LogError("There are no items inside the 'stateStack' container");
-            }
+            _soulDrainObjManager.DrainEffect();
         }
 
 

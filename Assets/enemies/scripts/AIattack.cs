@@ -46,13 +46,13 @@ public class AIattack : MonoBehaviour
         }
     }
 
+    public Transform handPosition;
 
     IEnumerator MyAttack()
     {
         if (targetTags.Length > 0)
         {
-            Collider[] hit = Physics.OverlapSphere(transform.position + (transform.forward * attackOffset), _attackRadius, layers, QueryTriggerInteraction.Ignore);
-
+            Collider[] hit = Physics.OverlapSphere(handPosition.position + (transform.forward * attackOffset), _attackRadius, layers, QueryTriggerInteraction.Ignore);
             if (hit.Length > 0)
             {
                 foreach (Collider item in hit)
@@ -120,6 +120,6 @@ public class AIattack : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + (transform.forward * attackOffset), _attackRadius);
+        Gizmos.DrawWireSphere(handPosition.position + (transform.forward * attackOffset), _attackRadius);
     }
 }

@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class SoulDrainObjBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    private EnemyController _controller;
-    // Use this for initialization
-    void Start()
-    {
+    public Transform player;
 
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerController>().transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-    }
-
-    void Stun()
-    {
-        if (_controller.stateStack.Peek() == EnemyController.States.STUNNED)
-        {
-
-        }
+        transform.LookAt(player.position + new Vector3(0,1,0));
     }
 }
