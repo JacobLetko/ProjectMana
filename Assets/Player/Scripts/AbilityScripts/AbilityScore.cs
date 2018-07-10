@@ -281,11 +281,11 @@ public struct Abilities
         {
             if (value > 20)
             {
-                _dex = 20;
+                _con = 20;
             }
             else
             {
-                _dex = value;
+                _con = value;
             }
             if (conMonitor != null)
             {
@@ -495,6 +495,7 @@ public class AbilityScore : MonoBehaviour
 
     public delegate void TouchAbility();
     public TouchAbility levelMonitor;
+    [SerializeField]
     private float _level = 1;
 
     public float Level
@@ -554,20 +555,33 @@ public class AbilityScore : MonoBehaviour
     {
         if (abilities.Experience / levelUpThreshold > Level)
         {
-                
-                abilities.Cha += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
-
-                abilities.Con += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
-
-                abilities.Dex += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
-
-                abilities.Int += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
-
-                abilities.Str += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
-
-                abilities.Wis += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
-
+            int select = 0;
+            select = UnityEngine.Random.Range(0, 6);
+            switch (select)
+            {
+                case 0:
+                    abilities.Cha += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                    break;
+                case 1:
+                    abilities.Con += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                    break;
+                case 2:
+                    abilities.Dex += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                    break;
+                case 3:
+                    abilities.Int += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                    break;
+                case 4:
+                    abilities.Str += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                    break;
+                case 5:
+                    abilities.Wis += (int)UnityEngine.Random.Range(_statBoostFloor, _statBoostCeiling);
+                    break;
+            }
+                abilities = SetStatusScores(abilities);
+            Level += 1;
         }
+
     }
 
 

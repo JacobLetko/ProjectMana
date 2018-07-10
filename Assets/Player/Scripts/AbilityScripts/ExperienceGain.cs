@@ -27,7 +27,10 @@ public class ExperienceGain : MonoBehaviour
         {
             Debug.LogError("No reciever for experience points detected, check tags and objects");
         }
+        gaveExperience = false;
     }
+
+    bool gaveExperience = false;
 
     void GiveExperience()//if the objects health hits zero then the experience reward is given to the reciever
     {
@@ -36,10 +39,12 @@ public class ExperienceGain : MonoBehaviour
         {
             if (_isDead)
             {
-                _reciever.GetComponent<AbilityScore>().abilities.Experience += experienceReward;
+                if (gaveExperience == false)
+                {
+                    _reciever.GetComponent<AbilityScore>().abilities.Experience += experienceReward;
+                    gaveExperience = true;
+                }
             }
-
-
         }
     }
 

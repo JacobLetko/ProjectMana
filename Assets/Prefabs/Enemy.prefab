@@ -4806,6 +4806,7 @@ MonoBehaviour:
   _statBoostFloor: 0
   _statBoostCeiling: 0
   levelUpThreshold: 100
+  _level: 1
 --- !u!114 &114502902952729048
 MonoBehaviour:
   m_ObjectHideFlags: 1
