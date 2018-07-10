@@ -32,25 +32,31 @@ public class chest : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        messaqgeCenter.gameObject.SetActive(true);
-        background.gameObject.SetActive(true);
-        reading = true;
-        StartCoroutine(display());
+        if (other.tag == "Player")
+        {
+            messaqgeCenter.gameObject.SetActive(true);
+            background.gameObject.SetActive(true);
+            reading = true;
+            StartCoroutine(display());
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        messaqgeCenter.gameObject.SetActive(false);
-        background.gameObject.SetActive(false);
-        reading = false;
-        index = 0;
-        messaqgeCenter.text = "";
+        if (other.tag == "Player")
+        {
+            messaqgeCenter.gameObject.SetActive(false);
+            background.gameObject.SetActive(false);
+            reading = false;
+            index = 0;
+            messaqgeCenter.text = "";
+        }
     }
 
     IEnumerator display()
     {
 
-        if (reading)
+        if (reading && index < message.Length)
         {
             messaqgeCenter.text += message[index];
             index++;

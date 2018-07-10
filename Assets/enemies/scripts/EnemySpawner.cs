@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> enemies;
     public GameObject player;
     public int AreaLength = 10;
+    public LayerMask mask;
 
 
     private void Start()
@@ -22,14 +23,15 @@ public class EnemySpawner : MonoBehaviour
         Ray target = new Ray(transform.position, dir);
         Debug.DrawRay(transform.position, dir);
 
-        if (Physics.Raycast(target, AreaLength, 0))
+        if (Physics.Raycast(target, AreaLength, mask))
         /*if (Physics.Raycast(target, out hit, AreaLength)) */{ }
 
         else
             StartCoroutine(Spawn());
 
-        if (enemies.Contains(null))
-            enemies.RemoveAll(null);
+        foreach(GameObject g in enemies)
+            if (g == null)
+                enemies.Remove(g);
     }
 
     IEnumerator Spawn()
