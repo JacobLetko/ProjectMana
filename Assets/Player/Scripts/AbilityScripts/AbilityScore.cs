@@ -605,7 +605,7 @@ public class AbilityScore : MonoBehaviour
 
         abilities.PhysicalDamage = 6 + GetMod(abilities.Str);
         abilities.MagicDamage = 2 + GetMod(abilities.Cha);//psuedo-magic massile damage
-        abilities.Speed = 5 + GetMod(abilities.Dex);
+        abilities.Speed = 7 + GetMod(abilities.Dex);
         return abilities;
     }
 

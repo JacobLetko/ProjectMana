@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public ObjectPool pool;
 
-    float rangeAtkTimer = 0;
-    float meleeAtkTimer = 0;
+    public float rangeAtkTimer = 0;
+    public float meleeAtkTimer = 0;
     public float RateOfFire;//Bullets per second
     // Use this for initialization
     void Awake()
