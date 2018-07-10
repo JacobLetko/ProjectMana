@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
@@ -21,23 +21,34 @@ public class EnemySpawner : MonoBehaviour
         Vector3 dir = ((player.transform.position + Vector3.up) - transform.position).normalized * AreaLength;
         Ray target = new Ray(transform.position, dir);
         Debug.DrawRay(transform.position, dir);
-        if (Physics.Raycast(target, out hit, AreaLength)) { }
+
+        if (Physics.Raycast(target, AreaLength, 0))
+        /*if (Physics.Raycast(target, out hit, AreaLength)) */{ }
+
         else
             StartCoroutine(Spawn());
-        foreach(GameObject g in enemies)
-        {
-            if (g == null)
-                enemies.Remove(g);
-        }
+
+        if (enemies.Contains(null))
+            enemies.RemoveAll(null);
     }
 
     IEnumerator Spawn()
     { 
         if (enemies.Count < 10)
         {
+            GameObject spawnedEnemy = Instantiate(enemy);
+            Vector3 desiredPosition = transform.position + Vector3.up + (new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(desiredPosition, out hit, 5, NavMesh.AllAreas))
+            {
+                spawnedEnemy.GetComponent<NavMeshAgent>().Warp(hit.position);
+                enemies.Add(spawnedEnemy);
+            }
+            else
+            {
+                Debug.Log("Spawner cannot spawn enemies in this location");
+            }
             
-            enemies.Add(Instantiate(enemy));
-            enemies[enemies.Count - 1].transform.position = transform.position + Vector3.up + (new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));
         }
         yield return new WaitForSeconds(5);
     }
