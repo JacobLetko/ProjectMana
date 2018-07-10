@@ -47,6 +47,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (abilityScores.abilities.Health > abilityScores.abilities.HealthCap)
+        {
+            abilityScores.abilities.Health = abilityScores.abilities.HealthCap;
+        }
+
         if (!_paused)
         {
             if (!_playerMovement.isJumping)
