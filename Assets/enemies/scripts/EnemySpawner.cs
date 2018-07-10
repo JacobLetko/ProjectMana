@@ -29,9 +29,15 @@ public class EnemySpawner : MonoBehaviour
         else
             StartCoroutine(Spawn());
 
-        foreach(GameObject g in enemies)
+        foreach (GameObject g in enemies)
+        {
             if (g == null)
                 enemies.Remove(g);
+            if(g.GetComponent<AbilityScore>().abilities.Health <= 0)
+            {
+                enemies.Remove(g);
+            }
+        }
     }
 
     IEnumerator Spawn()
