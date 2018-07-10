@@ -18,6 +18,11 @@ public class HUD : MonoBehaviour
     }
     private float _Mana;
 
+    public float MagicTimer;
+    float _MagicTimer;
+    public float SwordTimer;
+    float _SwordTimer;
+
     [Header("lighting")]
     public float max;
     public float current;
@@ -50,6 +55,8 @@ public class HUD : MonoBehaviour
         _Mana = mana;
         HUDmenu.GetComponent<RectTransform>().sizeDelta = new Vector2(canvas.GetComponent<RectTransform>().rect.width, canvas.GetComponent<RectTransform>().rect.height);
         pausemenu.GetComponent<RectTransform>().sizeDelta = new Vector2(canvas.GetComponent<RectTransform>().rect.width, canvas.GetComponent<RectTransform>().rect.height);
+        //MagicTimer = player.GetComponent<PlayerController>().rangedAttack;
+        //SwordTimer = player.GetComponent<PlayerController>().meleeAttack;
     }
 
     private void Update()
@@ -66,7 +73,7 @@ public class HUD : MonoBehaviour
     float calcHealth()
     {
         health = player.GetComponent<AbilityScore>().abilities.Health;
-        return player.GetComponent<AbilityScore>().abilities.Health / _Health;
+        return player.GetComponent<AbilityScore>().abilities.Health / player.GetComponent<AbilityScore>().abilities.HealthCap;
     }
 
     float calcMana()
