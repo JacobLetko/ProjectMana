@@ -88,3 +88,6 @@ MonoBehaviour:
   enemies: []
   player: {fileID: 0}
   AreaLength: 50
+  mask:
+    serializedVersion: 2
+    m_Bits: 4096
