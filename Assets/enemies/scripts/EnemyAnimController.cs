@@ -41,7 +41,7 @@ public class EnemyAnimController : MonoBehaviour
 
             }
 
-            if (_enemyController.stateStack.Peek() == EnemyController.States.GOTO && _navMeshAgent.velocity.magnitude > 0)
+            if (_enemyController.stateStack.Peek() == EnemyController.States.GOTO && _navMeshAgent.velocity.magnitude > 0.1f)
             {
                 _animator.SetBool("isRunning", true);
             }
@@ -58,15 +58,6 @@ public class EnemyAnimController : MonoBehaviour
             else
             {
                 _animator.SetBool("isDead", false);
-            }
-
-            if (_enemyController.stateStack.Peek() == EnemyController.States.STUNNED)
-            {
-                _animator.SetBool("isStunned", true);
-            }
-            else
-            {
-                _animator.SetBool("isStunned", false);
             }
         }
     }

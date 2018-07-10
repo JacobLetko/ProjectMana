@@ -4803,6 +4803,7 @@ MonoBehaviour:
     _int: 10
     _wis: 10
     _cha: 10
+    _speed: 0
   _statBoostFloor: 0
   _statBoostCeiling: 0
   levelUpThreshold: 100

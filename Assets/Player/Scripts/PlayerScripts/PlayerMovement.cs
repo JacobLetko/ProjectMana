@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
-    float speed = 10;
+    [SerializeField]
+    float _speed = 10;
     [SerializeField]
     bool _isAttacking = false;
     Vector3 direction;
@@ -63,12 +64,12 @@ public class PlayerMovement : MonoBehaviour
     {
         get
         {
-            return speed;
+            return _speed;
         }
 
         set
         {
-            speed = value;
+            _speed = value;
             SetAgentSpeed();
         }
     }
@@ -88,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetAgentSpeed()
     {
-        _meshAgent.speed = speed;
+        _meshAgent.speed = _speed;
 
     }
 

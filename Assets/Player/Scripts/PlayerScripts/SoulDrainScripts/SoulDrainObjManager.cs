@@ -49,14 +49,17 @@ public class SoulDrainObjManager : MonoBehaviour
             {
                 //if (Input.GetKeyDown(KeyCode.Q))
                 //{
-                    if (gaveHealth == false)
-                    {
+                if (gaveHealth == false)
+                {
 
-                        _particleSystem.SetActive(true);
+                    _particleSystem.SetActive(true);
+                    if ((_playerController.abilityScores.abilities.Health + (int)_playerController.abilityScores.GetMod(_playerController.abilityScores.abilities.Con) + 1) <= _playerController.abilityScores.abilities.HealthCap)
+                    {
                         _playerController.abilityScores.abilities.Health += (int)_playerController.abilityScores.GetMod(_playerController.abilityScores.abilities.Con) + 1;
-                        Debug.Log("Drain Effect working");
-                        gaveHealth = true;
                     }
+                    Debug.Log("Drain Effect working");
+                    gaveHealth = true;
+                }
                 //}
             }
         }

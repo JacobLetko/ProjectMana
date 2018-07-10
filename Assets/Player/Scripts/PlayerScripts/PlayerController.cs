@@ -30,6 +30,19 @@ public class PlayerController : MonoBehaviour
         meleeAtkTimer = 1 / RateOfFire;
         meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
         _playerMovement = GetComponent<PlayerMovement>();
+        
+    }
+
+    private void Start()
+    {
+        abilityScores.levelMonitor += SetSpeed;
+        _playerMovement.Speed = abilityScores.abilities.Speed;
+    }
+
+    void SetSpeed()
+    {
+        _playerMovement.Speed = abilityScores.abilities.Speed;
+
     }
 
     void Update()

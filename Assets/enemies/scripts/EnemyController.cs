@@ -38,7 +38,6 @@ public class EnemyController : MonoBehaviour
 
         _abilityScore = GetComponent<AbilityScore>();
         _abilityScore.abilities.healthMonitor += Death;
-        _abilityScore.abilities.healthMonitor += Stunned;
 
         if (GetComponent<AIMovment>() != null)
         {
@@ -59,10 +58,8 @@ public class EnemyController : MonoBehaviour
         {
             Debug.LogError("There is no AIattack script on: " + gameObject.name);
         }
-        availibleStates.Add(States.STUNNED, new AIbehavior(WaitAbit));
         availibleStates.Add(States.DEATH, new AIbehavior(OnDeath));
 
-        stateStack.Push(States.GOTO);
     }
 
     void Start()
@@ -107,43 +104,10 @@ public class EnemyController : MonoBehaviour
         _runUpdate = false;
     }
 
-    public void Stunned()
-    {
-        if ((_abilityScore.abilities.Health <= Mathf.Round(_abilityScore.abilities.HealthCap / 3)) && _abilityScore.abilities.Health > 0)
-        {
-            Debug.Log("Ai Stunned");
-            stateStack.Pop();
-            stateStack.Push(EnemyController.States.STUNNED);
-        }
-    }
 
-    public void WaitAbit()
-    {
-        StartCoroutine(IWait());
 
-    }
 
-    IEnumerator IWait()
-    {
-        float duration = 3f;
 
-        float totalTime = 0;
-        while (totalTime <= duration)
-        {
-            if (_abilityScore.abilities.Health <= 0)
-            {
-                yield break;
-            }
-            totalTime += Time.deltaTime;
-            yield return null;
-        }
-
-        _abilityScore.abilities.Health = Mathf.RoundToInt(_abilityScore.abilities.HealthCap / 2);
-
-        stateStack.Pop();
-        stateStack.Push(EnemyController.States.GOTO);
-
-    }
 
     public States myState;
     // Update is called once per frame

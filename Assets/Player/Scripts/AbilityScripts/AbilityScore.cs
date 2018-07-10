@@ -375,6 +375,7 @@ public struct Abilities
 
 
     //What does not show up on the UI-------------------------------------------
+    [SerializeField]
     private float _speed;
     private float _EvasionCool;
     private float _attackSpeed;
@@ -508,8 +509,14 @@ public class AbilityScore : MonoBehaviour
         set
         {
             _level = value;
-            levelMonitor();
+
             SetStatusScores(abilities);
+
+            if (levelMonitor != null)
+            {
+                levelMonitor();
+            }
+
         }
     }
 
