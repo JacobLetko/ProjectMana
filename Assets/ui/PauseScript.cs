@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using TMPro;
 
 public class PauseScript : MonoBehaviour
@@ -44,11 +41,11 @@ public class PauseScript : MonoBehaviour
             resume();
         }
 
-        if (Input.GetKey("tab"))
-        {
-            cursorstate(true);
-            wheel.SetActive(true);
-        }
+        //if (Input.GetKey("tab"))
+        //{
+        //    cursorstate(true);
+        //    wheel.SetActive(true);
+        //}
         else
         {
             if (!paused)

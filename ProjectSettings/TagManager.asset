@@ -10,6 +10,7 @@ TagManager:
   - Melee
   - Gun
   - chest
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Wall
   - Melee
   - Ground
-  - 
+  - Player
   - 
   - 
   - 
