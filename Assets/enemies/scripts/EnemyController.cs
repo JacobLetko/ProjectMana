@@ -80,6 +80,9 @@ public class EnemyController : MonoBehaviour
             stateStack.Pop();
         }
 
+        GetComponent<CapsuleCollider>().enabled = true;
+        movement.nav.enabled = true;
+
         stateStack.Push(States.GOTO);
         _runUpdate = true;
     }
@@ -99,7 +102,8 @@ public class EnemyController : MonoBehaviour
 
     public void OnDeath()
     {
-        //GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+        movement.nav.enabled = false;
         _runUpdate = false;
     }
 

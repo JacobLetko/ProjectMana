@@ -41,6 +41,7 @@ public class AnimController : MonoBehaviour
             if (Input.GetMouseButton(1))
             {
                 _animator.SetBool("isSlashing", true);
+                
             }
             else
             {
