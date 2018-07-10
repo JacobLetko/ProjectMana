@@ -2568,7 +2568,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1664526448556686}
-  m_LocalRotation: {x: -0.013511248, y: 0.000010757442, z: -0.0000046161863, w: 0.9999088}
+  m_LocalRotation: {x: -0.01349643, y: -0.045575175, z: 0.012022867, w: 0.9987974}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children:
@@ -2665,7 +2665,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1966820475732296}
-  m_LocalRotation: {x: 0.22644746, y: 0.000009338114, z: -0.0000070590136, w: 0.97402346}
+  m_LocalRotation: {x: 0.22619563, y: -0.041338265, z: 0.022582477, w: 0.97294235}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children:
@@ -2706,7 +2706,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570925929309362}
   m_LocalRotation: {x: 0.13531359, y: -0.000011239979, z: 0.0000032702956, w: 0.9908028}
-  m_LocalPosition: {x: 0, y: 3.8400002, z: -4.01}
+  m_LocalPosition: {x: 0.37737274, y: 3.8399997, z: -3.9922047}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649621267022602}
@@ -3342,8 +3342,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851760049849616}
-  m_LocalRotation: {x: 0.3561634, y: -0, z: -0, w: 0.93442374}
-  m_LocalPosition: {x: 0, y: 3.8400002, z: -4.01}
+  m_LocalRotation: {x: 0.35576797, y: -0.044017185, z: 0.016777515, w: 0.9333864}
+  m_LocalPosition: {x: 0.37737274, y: 3.8399997, z: -3.9922047}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4500121333337304}
@@ -3935,7 +3935,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1878866645386534}
-  m_LocalRotation: {x: 0.27789676, y: 0.000008949853, z: -0.0000075454736, w: 0.960611}
+  m_LocalRotation: {x: 0.27758533, y: -0.040045597, z: 0.02471946, w: 0.9595477}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children:
@@ -8627,9 +8627,9 @@ MonoBehaviour:
   m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.55
-  m_DeadZoneWidth: 0.1
+  m_DeadZoneWidth: 0.385
   m_DeadZoneHeight: 0.1
-  m_SoftZoneWidth: 0.8
+  m_SoftZoneWidth: 1
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
   m_BiasY: 0
@@ -8801,9 +8801,9 @@ MonoBehaviour:
   m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.1
+  m_DeadZoneWidth: 0.268
   m_DeadZoneHeight: 0.1
-  m_SoftZoneWidth: 0.8
+  m_SoftZoneWidth: 1
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
   m_BiasY: 0
@@ -9021,9 +9021,9 @@ MonoBehaviour:
   m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.6
-  m_DeadZoneWidth: 0.1
+  m_DeadZoneWidth: 0.17
   m_DeadZoneHeight: 0.1
-  m_SoftZoneWidth: 0.8
+  m_SoftZoneWidth: 0.17
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
   m_BiasY: 0
@@ -9167,16 +9167,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
+    _magicDamage: 0
+    _physicalDamage: 0
     _health: 8
+    _healthCap: 0
     _experience: 0
     _str: 10
     _dex: 10
-    _con: 10
+    _con: 12
     _int: 10
     _wis: 10
     _cha: 10
   _statBoostFloor: 1
   _statBoostCeiling: 3
+  levelUpThreshold: 100
 --- !u!114 &114265205792171502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10438,6 +10442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnPos: {x: 0, y: 0, z: 0}
   player: {fileID: 1962476835201196}
+  deathbox: {fileID: 0}
 --- !u!114 &114984877308676456
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -47,17 +47,17 @@ public class SoulDrainObjManager : MonoBehaviour
         {
             if (Vector3.Distance(_playerController.transform.position, transform.position) < 10)
             {
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
+                //if (Input.GetKeyDown(KeyCode.Q))
+                //{
                     if (gaveHealth == false)
                     {
 
                         _particleSystem.SetActive(true);
-                        _playerController.abilityScores.abilities.Health += _playerController.abilityScores.GetMod(_playerController.abilityScores.abilities.Con);
+                        _playerController.abilityScores.abilities.Health += (int)_playerController.abilityScores.GetMod(_playerController.abilityScores.abilities.Con) + 1;
                         Debug.Log("Drain Effect working");
                         gaveHealth = true;
                     }
-                }
+                //}
             }
         }
     }

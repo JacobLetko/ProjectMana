@@ -1,0 +1,248 @@
+fileFormatVersion: 2
+guid: b6b2060e52aa35b459a39d9a8cae4e5d
+timeCreated: 1531243812
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Goblin_Reproportion:polySurface5
+    100002: j_ankle_l
+    100004: j_ankle_r
+    100006: j_back_1
+    100008: j_back_2
+    100010: j_back_3
+    100012: j_buckle
+    100014: j_clav_l
+    100016: j_clav_r
+    100018: j_core
+    100020: j_elbow_l
+    100022: j_elbow_r
+    100024: j_foot_l
+    100026: j_foot_l_END
+    100028: j_foot_r
+    100030: j_foot_r_END
+    100032: j_head
+    100034: j_head_END
+    100036: j_hip_l
+    100038: j_hip_r
+    100040: j_in_l_1
+    100042: j_in_l_2
+    100044: j_in_l_3
+    100046: j_in_l_END
+    100048: j_in_r_1
+    100050: j_in_r_2
+    100052: j_in_r_3
+    100054: j_in_r_END
+    100056: j_knee_l
+    100058: j_knee_r
+    100060: j_ling_l_1
+    100062: j_ling_l_2
+    100064: j_ling_l_3
+    100066: j_ling_l_END
+    100068: j_mid_l_1
+    100070: j_mid_l_2
+    100072: j_mid_l_3
+    100074: j_mid_l_END
+    100076: j_mid_r_1
+    100078: j_mid_r_2
+    100080: j_mid_r_3
+    100082: j_mid_r_END
+    100084: j_neck_1
+    100086: j_neck_2
+    100088: j_pink_l_1
+    100090: j_pink_l_2
+    100092: j_pink_l_3
+    100094: j_pink_l_END
+    100096: j_pink_r_1
+    100098: j_pink_r_2
+    100100: j_pink_r_3
+    100102: j_pink_r_END
+    100104: j_ring_r_1
+    100106: j_ring_r_2
+    100108: j_ring_r_3
+    100110: j_ring_r_END
+    100112: j_shlder_l
+    100114: j_shlder_r
+    100116: j_thumb_l_1
+    100118: j_thumb_l_2
+    100120: j_thumb_l_END
+    100122: j_thumb_r_1
+    100124: j_thumb_r_2
+    100126: j_thumb_r_END
+    100128: j_wrist_l
+    100130: j_wrist_r
+    100132: //RootNode
+    400000: Goblin_Reproportion:polySurface5
+    400002: j_ankle_l
+    400004: j_ankle_r
+    400006: j_back_1
+    400008: j_back_2
+    400010: j_back_3
+    400012: j_buckle
+    400014: j_clav_l
+    400016: j_clav_r
+    400018: j_core
+    400020: j_elbow_l
+    400022: j_elbow_r
+    400024: j_foot_l
+    400026: j_foot_l_END
+    400028: j_foot_r
+    400030: j_foot_r_END
+    400032: j_head
+    400034: j_head_END
+    400036: j_hip_l
+    400038: j_hip_r
+    400040: j_in_l_1
+    400042: j_in_l_2
+    400044: j_in_l_3
+    400046: j_in_l_END
+    400048: j_in_r_1
+    400050: j_in_r_2
+    400052: j_in_r_3
+    400054: j_in_r_END
+    400056: j_knee_l
+    400058: j_knee_r
+    400060: j_ling_l_1
+    400062: j_ling_l_2
+    400064: j_ling_l_3
+    400066: j_ling_l_END
+    400068: j_mid_l_1
+    400070: j_mid_l_2
+    400072: j_mid_l_3
+    400074: j_mid_l_END
+    400076: j_mid_r_1
+    400078: j_mid_r_2
+    400080: j_mid_r_3
+    400082: j_mid_r_END
+    400084: j_neck_1
+    400086: j_neck_2
+    400088: j_pink_l_1
+    400090: j_pink_l_2
+    400092: j_pink_l_3
+    400094: j_pink_l_END
+    400096: j_pink_r_1
+    400098: j_pink_r_2
+    400100: j_pink_r_3
+    400102: j_pink_r_END
+    400104: j_ring_r_1
+    400106: j_ring_r_2
+    400108: j_ring_r_3
+    400110: j_ring_r_END
+    400112: j_shlder_l
+    400114: j_shlder_r
+    400116: j_thumb_l_1
+    400118: j_thumb_l_2
+    400120: j_thumb_l_END
+    400122: j_thumb_r_1
+    400124: j_thumb_r_2
+    400126: j_thumb_r_END
+    400128: j_wrist_l
+    400130: j_wrist_r
+    400132: //RootNode
+    4300000: Goblin_Reproportion:polySurface5
+    7400000: GoblinRunV2
+    9500000: //RootNode
+    13700000: Goblin_Reproportion:polySurface5
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: GoblinRunV2
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

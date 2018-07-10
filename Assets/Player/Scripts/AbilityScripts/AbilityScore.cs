@@ -103,7 +103,12 @@ public struct Abilities
 
         set
         {
+
             _health = value;
+
+            Mathf.Clamp(_health, 0, HealthCap);
+            Mathf.Clamp(Health, 0, HealthCap);
+            
             if (healthMonitor != null)
             {
                 healthMonitor();
