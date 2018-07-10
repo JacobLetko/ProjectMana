@@ -7,7 +7,7 @@ public class AIMovment : MonoBehaviour
 {
     public EnemyController controller;
     public Transform target;
-    NavMeshAgent _nav;
+    public NavMeshAgent nav;
     [SerializeField]
     private float _searchRadius;
     [SerializeField]
@@ -15,6 +15,12 @@ public class AIMovment : MonoBehaviour
 
     private void Awake()
     {
+        nav = GetComponent<NavMeshAgent>();
+        if (nav == null)
+        {
+            Debug.LogError("No NavMeshAgent detected");
+        }
+
         if (GetComponent<EnemyController>() != null)
         {
             controller = GetComponent<EnemyController>();
@@ -25,15 +31,6 @@ public class AIMovment : MonoBehaviour
         }
     }
 
-
-    private void Start()
-    {
-        _nav = GetComponent<NavMeshAgent>();
-        if (_nav == null)
-        {
-            Debug.LogError("No NavMeshAgent detected");
-        }
-    }
 
 
     private void Update()
@@ -69,7 +66,7 @@ public class AIMovment : MonoBehaviour
             }
         }
 
-
+        
     }
 
     public void GoTo()
@@ -78,10 +75,10 @@ public class AIMovment : MonoBehaviour
         {
             if (Vector3.Distance(target.position, transform.position) < _searchRadius)
             {
-                _nav.destination = target.position;
-                if (_nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
+                nav.destination = target.position;
+                if (nav.pathStatus == NavMeshPathStatus.PathComplete)//stopping distance is adjusted on the navmesh agent and is taken into account here
                 {
-                    if ((_nav.remainingDistance != Mathf.Infinity) && ((_nav.remainingDistance - _nav.stoppingDistance) <= 0.1f))
+                    if ((nav.remainingDistance != Mathf.Infinity) && ((nav.remainingDistance - nav.stoppingDistance) <= 0.1f))
                     {
                         controller.stateStack.Pop();
                         controller.stateStack.Push(EnemyController.States.ATTACK);
@@ -90,7 +87,7 @@ public class AIMovment : MonoBehaviour
             }
             else
             {
-                _nav.destination = transform.position;
+                nav.destination = transform.position;
             }
         }
     }

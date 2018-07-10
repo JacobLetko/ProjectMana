@@ -38,12 +38,14 @@ public struct Abilities
 
     //What shows up on the UI---------------------------------------------------
 
-    
+    [SerializeField]
     private float _magicDamage;
+    [SerializeField]
     private float _physicalDamage;
     private float _armorClass;
     [SerializeField]
     private float _health;
+    [SerializeField]
     private float _healthCap;
     private float _mana;
     private float _manaCap;
@@ -121,6 +123,11 @@ public struct Abilities
         set
         {
             _healthCap = value;
+            if (_health > HealthCap)
+            {
+                _health = HealthCap;
+            }
+
             if (healthCapMonitor != null)
             {
 
@@ -567,9 +574,12 @@ public class AbilityScore : MonoBehaviour
     public Abilities SetStatusScores(Abilities abilities)
     {
         abilities.ArmorClass = 11 + GetMod(abilities.Dex);
-        abilities.Health = 8 + GetMod(abilities.Con);
+        abilities.HealthCap = 8 + GetMod(abilities.Con);
+        abilities.Health = abilities.HealthCap;
+
         abilities.PhysicalDamage = 6 + GetMod(abilities.Str);
         abilities.MagicDamage = 2 + GetMod(abilities.Cha);//psuedo-magic massile damage
+        abilities.Speed = 5 + GetMod(abilities.Dex);
         return abilities;
     }
 

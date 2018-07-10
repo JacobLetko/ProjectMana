@@ -37,8 +37,6 @@ public class ExperienceGain : MonoBehaviour
             if (_isDead)
             {
                 _reciever.GetComponent<AbilityScore>().abilities.Experience += experienceReward;
-
-                Destroy(gameObject);
             }
 
 

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SoulDrainObjBehaviour : MonoBehaviour
 {
-    private AbilityScore abilityScore;
+    [SerializeField]
+    private EnemyController _controller;
     // Use this for initialization
     void Start()
     {
-        abilityScore = GetComponent<AbilityScore>();
+
     }
 
     // Update is called once per frame
@@ -19,7 +20,7 @@ public class SoulDrainObjBehaviour : MonoBehaviour
 
     void Stun()
     {
-        if (abilityScore.abilities.Health <= Mathf.Round(abilityScore.abilities.HealthCap / 3))
+        if (_controller.stateStack.Peek() == EnemyController.States.STUNNED)
         {
 
         }

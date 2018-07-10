@@ -9,10 +9,11 @@ public class EnemyController : MonoBehaviour
 {
     public AIMovment movement;
     public AIattack attack;
+    private AbilityScore _abilityScore;
 
     public enum States
     {
-        AVOID = 0, GOTO = 1, ATTACK = 2, DEATH = 3
+        STUNNED = 0, GOTO = 1, ATTACK = 2, DEATH = 3
     }
 
     public delegate void AIbehavior();
@@ -22,7 +23,9 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<AbilityScore>().abilities.healthMonitor += Death;
+        _abilityScore = GetComponent<AbilityScore>();
+        _abilityScore.abilities.healthMonitor += Death;
+        _abilityScore.abilities.healthMonitor += Stunned;
 
         if (GetComponent<AIMovment>() != null)
         {
@@ -43,18 +46,80 @@ public class EnemyController : MonoBehaviour
         {
             Debug.LogError("There is no AIattack script on: " + gameObject.name);
         }
-
-
-
-
+        availibleStates.Add(States.STUNNED, new AIbehavior(WaitAbit));
+        availibleStates.Add(States.DEATH, new AIbehavior(OnDeath));
 
         stateStack.Push(States.GOTO);
+    }
+
+    void Start()
+    {
+
+
+        if (GetComponent<CapsuleCollider>().enabled == false)
+        {
+            GetComponent<CapsuleCollider>().enabled = true;
+        }
+        movement.nav.speed = _abilityScore.abilities.Speed;
+
+        if (stateStack.Count > 0)
+        {
+            stateStack.Pop();
+        }
+
+        stateStack.Push(States.GOTO);
+
     }
 
     public void Death()
     {
         //run Death animation and death stuff
-        Debug.Log("Running Ai death");
+        if (_abilityScore.abilities.Health <= 0)
+        {
+            Debug.Log("Running Ai death");
+            movement.nav.speed = 0;
+            stateStack.Pop();
+            stateStack.Push(EnemyController.States.DEATH);
+        }
+ 
+    }
+
+    public void OnDeath()
+    {
+        //GetComponent<CapsuleCollider>().enabled = false;
+        stateStack.Pop();
+    }
+
+    public void Stunned()
+    {
+        if ((_abilityScore.abilities.Health <= Mathf.Round(_abilityScore.abilities.HealthCap / 3)) && _abilityScore.abilities.Health > 0)
+        {
+            Debug.Log("Ai Stunned");
+            stateStack.Pop();
+            stateStack.Push(EnemyController.States.STUNNED);
+        }
+    }
+
+    public void WaitAbit()
+    {
+        StartCoroutine(IWait());
+    }
+
+    IEnumerator IWait()
+    {
+        float duration = 3f;
+
+        float totalTime = 0;
+        while (totalTime <= duration)
+        { 
+            totalTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _abilityScore.abilities.Health = Mathf.RoundToInt(_abilityScore.abilities.HealthCap / 2);
+
+        stateStack.Pop();
+        stateStack.Push(EnemyController.States.GOTO);
     }
 
     public States myState;
@@ -77,7 +142,10 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("There are no items inside the 'stateStack' container");
+            if (_abilityScore.abilities.Health > 0)
+            {
+                Debug.LogError("There are no items inside the 'stateStack' container");
+            }
         }
 
 
