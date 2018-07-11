@@ -86,12 +86,19 @@ public class PlayerController : MonoBehaviour
                 meleeAtkTimer += Time.deltaTime;
                 if (Input.GetMouseButton(1))
                 {
-                    if (meleeAtkTimer >= 1 / RateOfFire)
+                    if (meleeAtkTimer >= 0.5f / RateOfFire)
                     {
                         meleeAttack.damage = abilityScores.abilities.PhysicalDamage;
-                        meleeAttack.attack();
-                        rangeAtkTimer = 0;
+                        meleeAttack.canDamage = true;
+                        meleeAtkTimer = 0;
                         Debug.Log("Melee");
+                    }
+                    else
+                    {
+                        if (meleeAttack.canDamage == true)
+                        {
+                            meleeAttack.canDamage = false;
+                        }
                     }
                 }
             }

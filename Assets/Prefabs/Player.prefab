@@ -3919,7 +3919,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1664526448556686}
-  m_LocalRotation: {x: -0.013495937, y: -0.045603346, z: 0.012025798, w: 0.9987961}
+  m_LocalRotation: {x: -0.013496205, y: -0.045603346, z: 0.012025785, w: 0.9987961}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children:
@@ -4084,7 +4084,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1966820475732296}
-  m_LocalRotation: {x: 0.22619583, y: -0.04133826, z: 0.022582483, w: 0.9729423}
+  m_LocalRotation: {x: 0.2261958, y: -0.04133826, z: 0.02258248, w: 0.9729423}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children:
@@ -7716,7 +7716,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.726912, y: 1, z: 1.2066822}
+  m_Size: {x: 3.62, y: 1, z: 1.2066822}
   m_Center: {x: 0.22246623, y: 0, z: 0.1033411}
 --- !u!81 &81682144982421480
 AudioListener:
@@ -11434,6 +11434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7605a0b44545cdc42ae420600ac5f773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDamage: 1
   damage: 6
   target: Enemy
 --- !u!114 &114198079464078200
@@ -11555,7 +11556,7 @@ MonoBehaviour:
     _health: 8
     _healthCap: 0
     _experience: 0
-    _str: 10
+    _str: 12
     _dex: 10
     _con: 10
     _int: 10
@@ -11729,6 +11730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a038d7e94dd228d4690b696898f5789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerController: {fileID: 0}
 --- !u!114 &114404373934225252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11762,6 +11764,8 @@ MonoBehaviour:
   abilityScores: {fileID: 114246229241513736}
   _paused: 0
   pool: {fileID: 114361342976982708}
+  rangeAtkTimer: 0
+  meleeAtkTimer: 0
   RateOfFire: 1
 --- !u!114 &114409496726127916
 MonoBehaviour:
@@ -12139,6 +12143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a038d7e94dd228d4690b696898f5789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerController: {fileID: 114404618474913562}
 --- !u!114 &114631572847349358
 MonoBehaviour:
   m_ObjectHideFlags: 1
