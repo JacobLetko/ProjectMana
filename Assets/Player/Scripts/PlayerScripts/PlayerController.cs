@@ -93,13 +93,6 @@ public class PlayerController : MonoBehaviour
                         meleeAtkTimer = 0;
                         Debug.Log("Melee");
                     }
-                    else
-                    {
-                        if (meleeAttack.canDamage == true)
-                        {
-                            meleeAttack.canDamage = false;
-                        }
-                    }
                 }
             }
         }

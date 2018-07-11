@@ -4260,7 +4260,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1002978109468596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.79, y: 1.27, z: 60.1}
+  m_LocalPosition: {x: 34.79, y: 1.27, z: 47.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4312853237425836}
@@ -4731,6 +4731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 0}
   attack: {fileID: 0}
+  _abilityScore: {fileID: 0}
   myState: 0
 --- !u!114 &114104681405866620
 MonoBehaviour:
@@ -4798,7 +4799,7 @@ MonoBehaviour:
     _healthCap: 0
     _experience: 100
     _str: 10
-    _dex: 10
+    _dex: 12
     _con: 10
     _int: 10
     _wis: 10
