@@ -70,7 +70,7 @@ public class HUD : MonoBehaviour
         level.text = player.GetComponent<AbilityScore>().Level.ToString();
         healthBar.value = calcHealth();
         //manaBar.value = calcMana();
-        //attackBar.value = calcSword();
+        attackBar.value = calcSword();
         MagicBar.value = calcMagic();
         calcBright(Red, RedBar);
         calcBright(Green, GreenBar);
@@ -98,6 +98,7 @@ public class HUD : MonoBehaviour
     float calcSword()
     {
         SwordTimer = player.GetComponent<PlayerController>().meleeAtkTimer;
+        //Debug.Log(SwordTimer);
         return player.GetComponent<PlayerController>().meleeAtkTimer / _SwordTimer;
     }
 
