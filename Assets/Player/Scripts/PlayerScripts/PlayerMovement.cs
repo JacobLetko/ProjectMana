@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetAgentSpeed()
     {
-        _meshAgent.speed = _speed;
+        _meshAgent.speed = _speed + 2;
 
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordScript : MonoBehaviour
 {
+    public bool canDamage = true;
     public float damage;
     public string target;
     private List<GameObject> _stuff;
@@ -18,6 +19,10 @@ public class SwordScript : MonoBehaviour
         if (other.tag == target)
         {
             _stuff.Add(other.gameObject);
+            if (canDamage)
+            {
+                attack();
+            }
         }
     }
 

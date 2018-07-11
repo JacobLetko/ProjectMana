@@ -50,7 +50,7 @@ public class EnemyAnimController : MonoBehaviour
                 _animator.SetBool("isRunning", false);
             }
 
-            if (_enemyController.stateStack.Peek() == EnemyController.States.DEATH)
+            if (_enemyController.stateStack.Peek() == EnemyController.States.DEATH || (_enemyController._abilityScore.abilities.Health <= 0))
             {
                 _animator.SetBool("isStunned", false);
                 _animator.SetBool("isDead", true);

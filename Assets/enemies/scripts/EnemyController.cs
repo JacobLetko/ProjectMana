@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
 {
     public AIMovment movement;
     public AIattack attack;
-    private AbilityScore _abilityScore;
+    public AbilityScore _abilityScore;
     private SoulDrainObjManager _soulDrainObjManager;
 
     bool _runUpdate = true;
