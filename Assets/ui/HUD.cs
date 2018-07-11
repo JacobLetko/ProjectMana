@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HUD : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class HUD : MonoBehaviour
         set {  }
     }
     private float _Mana;
+
+    public float MagicTimer;
+    float _MagicTimer;
+    public float SwordTimer;
+    float _SwordTimer;
 
     [Header("lighting")]
     public float max;
@@ -36,9 +42,12 @@ public class HUD : MonoBehaviour
     [Header("objects")]
     public Slider healthBar;
     public Slider manaBar;
+    public Slider attackBar;
+    public Slider MagicBar;
     public GameObject canvas;
     public GameObject HUDmenu;
     public GameObject pausemenu;
+    public TextMeshProUGUI level;
 
     public GameObject player;
 
@@ -50,12 +59,19 @@ public class HUD : MonoBehaviour
         _Mana = mana;
         HUDmenu.GetComponent<RectTransform>().sizeDelta = new Vector2(canvas.GetComponent<RectTransform>().rect.width, canvas.GetComponent<RectTransform>().rect.height);
         pausemenu.GetComponent<RectTransform>().sizeDelta = new Vector2(canvas.GetComponent<RectTransform>().rect.width, canvas.GetComponent<RectTransform>().rect.height);
+        MagicTimer = player.GetComponent<PlayerController>().rangeAtkTimer;
+        _MagicTimer = MagicTimer;
+        SwordTimer = player.GetComponent<PlayerController>().meleeAtkTimer;
+        _SwordTimer = SwordTimer;
     }
 
     private void Update()
     {
+        level.text = player.GetComponent<AbilityScore>().Level.ToString();
         healthBar.value = calcHealth();
         //manaBar.value = calcMana();
+        //attackBar.value = calcSword();
+        MagicBar.value = calcMagic();
         calcBright(Red, RedBar);
         calcBright(Green, GreenBar);
         calcBright(Blue, BlueBar);
@@ -66,7 +82,7 @@ public class HUD : MonoBehaviour
     float calcHealth()
     {
         health = player.GetComponent<AbilityScore>().abilities.Health;
-        return player.GetComponent<AbilityScore>().abilities.Health / _Health;
+        return player.GetComponent<AbilityScore>().abilities.Health / player.GetComponent<AbilityScore>().abilities.HealthCap;
     }
 
     float calcMana()
@@ -74,7 +90,17 @@ public class HUD : MonoBehaviour
         mana = player.GetComponent<AbilityScore>().abilities.Mana;
         return player.GetComponent<AbilityScore>().abilities.Mana /_Mana;
     }
-    
+    float calcMagic()
+    {
+        MagicTimer = player.GetComponent<PlayerController>().rangeAtkTimer;
+        return player.GetComponent<PlayerController>().rangeAtkTimer / _MagicTimer ;
+    }
+    float calcSword()
+    {
+        SwordTimer = player.GetComponent<PlayerController>().meleeAtkTimer;
+        return player.GetComponent<PlayerController>().meleeAtkTimer / _SwordTimer;
+    }
+
     void calcBright(Light light, Slider bar)
     {
         /*
