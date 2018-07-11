@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HUD : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class HUD : MonoBehaviour
     public GameObject canvas;
     public GameObject HUDmenu;
     public GameObject pausemenu;
+    public TextMeshProUGUI level;
 
     public GameObject player;
 
@@ -65,6 +67,7 @@ public class HUD : MonoBehaviour
 
     private void Update()
     {
+        level.text = player.GetComponent<AbilityScore>().Level.ToString();
         healthBar.value = calcHealth();
         //manaBar.value = calcMana();
         //attackBar.value = calcSword();
